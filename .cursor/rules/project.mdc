@@ -1,0 +1,82 @@
+---
+alwaysApply: true
+---
+
+# Règles Cursor - Projet Team Up
+
+## 1. Contexte du projet
+
+Dans le milieu amateur, organiser des matchs de football est souvent compliqué : trouver des joueurs disponibles, équilibrer les équipes, gérer les créneaux horaires, suivre les statistiques, etc.
+
+Team Up vise à simplifier cette organisation en proposant une application web intuitive pour créer, gérer et participer à des matchs entre amis, collègues ou membres d'une même communauté.
+
+## 2. Objectif du projet
+
+Développer une application web complète (frontend React + backend Express) permettant :
+
+- La création et gestion de matchs de football amateurs.
+- L'organisation d'équipes et la gestion des joueurs.
+- La possibilité pour les utilisateurs de s'inscrire, rejoindre ou créer un match.
+- Un tableau de bord clair pour suivre ses statistiques personnelles ou celles de son équipe.
+
+## 3. Public visé
+
+- Joueurs de football amateurs (entreprises, groupes d'amis, clubs informels).
+- Administrateurs d'équipes ou organisateurs d'événements sportifs.
+
+## 4. Périmètre fonctionnel (fonctionnalités principales)
+
+### 1. Authentification avec JWT
+
+- Inscription, connexion, déconnexion.
+- Réinitialisation du mot de passe via e-mail.
+- Gestion des rôles : joueur / admin.
+
+### 2. Gestion CRUD
+
+- Création, lecture, modification, suppression :
+  - Matchs
+  - Équipes
+  - Joueurs (profil)
+
+### 3. Affichage dynamique
+
+- Liste des matchs à venir, passés, auxquels on participe.
+- Visualisation du détail d'un match (lieu, heure, joueurs inscrits, équipes).
+
+### 4. Filtres et recherche multicritères
+
+- Recherche de matchs (par date, lieu, type, créateur, etc.).
+
+### 5. Validation et gestion d'erreurs
+
+- Formulaires d'inscription / création de match avec validations.
+
+### 6. Téléchargement de fichiers
+
+- Upload de photo de profil utilisateur et logo d'équipe.
+
+### 7. Rôles et permissions
+
+- Un administrateur peut valider ou supprimer des matchs.
+- Un joueur ne peut modifier que ses propres informations ou matchs créés.
+
+## 5. Contraintes techniques
+
+- Frontend : React + React Router.
+- Backend : Node.js + Express.
+- Base de données : PostgreSQL (schéma souple et facile à itérer).
+- Authentification : JWT (tokens stockés côté client).
+- Hébergement : déploiement futur sur Render / Vercel / Railway.
+- Versioning : GitHub (avec branches claires et commits réguliers).
+
+## 6. Livrables attendus (phase du 30/11/2025)
+
+- Front React statique avec données mockées (pas encore relié au backend).
+- Dossier d'analyse :
+  - README complet
+  - Spécification API REST
+  - Dictionnaire des données
+  - MCD / schéma PostgreSQL
+  - Spécifications fonctionnelles et techniques
+  - Diagrammes UML : use cases, séquence, flux
