@@ -1,0 +1,433 @@
+/**
+ * Styles pour les pages d'authentification (Login et Register)
+ * Design moderne avec effet glassmorphism et dégradé bleu
+ * Correspond aux maquettes fournies
+ */
+
+/* Container principal avec gradient bleu */
+.auth-container {
+  height: 100vh;
+  width: 100vw;
+  max-height: 100vh;
+  max-width: 100vw;
+  background: linear-gradient(135deg, #010D17 0%, #00416A 50%, #56AFC9 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  margin: 0;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+/* Wrapper pour les deux panneaux */
+.auth-wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  max-height: 600px;
+  height: 600px;
+  gap: 0;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Pour la page Register, inverser l'ordre */
+.auth-wrapper-register {
+  flex-direction: row-reverse;
+}
+
+/* Panneau avec l'image du joueur (fond blanc) */
+.auth-image-panel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.auth-image-frame {
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.auth-player-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Panneau avec le formulaire (effet glassmorphism) */
+.auth-form-panel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 3rem;
+  background: rgba(200, 220, 240, 0.25);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 24px;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  overflow: hidden;
+  margin-left: -40px; /* Chevauchement sur l'image pour LoginPage */
+}
+
+/* Pour RegisterPage, le formulaire est à gauche et chevauche l'image à droite */
+.auth-wrapper-register .auth-form-panel {
+  margin-left: 0;
+  margin-right: -40px;
+  z-index: 2; /* S'assurer que le formulaire est au-dessus de l'image */
+}
+
+/* S'assurer que l'image dans RegisterPage est à droite avec le même style */
+.auth-wrapper-register .auth-image-panel {
+  padding: 1.5rem;
+  z-index: 1;
+}
+
+/* Contenu du formulaire */
+.auth-form-content {
+  width: 100%;
+  max-width: 420px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 100%;
+  padding-right: 0.5rem;
+}
+
+/* Scrollbar personnalisée pour le contenu du formulaire */
+.auth-form-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.auth-form-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.auth-form-content::-webkit-scrollbar-thumb {
+  background: rgba(0, 65, 106, 0.3);
+  border-radius: 2px;
+}
+
+.auth-form-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 65, 106, 0.5);
+}
+
+/* Titre */
+.auth-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 1.75rem 0;
+  color: #00416A;
+  text-align: center;
+  letter-spacing: -0.5px;
+}
+
+/* Formulaire */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Groupe d'input */
+.auth-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* Label */
+.auth-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #00416A;
+  margin-bottom: 0.4rem;
+}
+
+/* Wrapper pour l'input et l'icône */
+.auth-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* Input avec ligne en bas uniquement */
+.auth-input {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 0;
+  font-size: 1rem;
+  color: #00416A;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(0, 65, 106, 0.3);
+  border-radius: 0;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.auth-input:focus {
+  border-bottom-color: #56AFC9;
+  background: transparent;
+}
+
+.auth-input::placeholder {
+  color: rgba(0, 65, 106, 0.5);
+  font-size: 0.95rem;
+}
+
+/* Input en erreur */
+.auth-input-error {
+  border-bottom-color: #e74c3c;
+}
+
+.auth-input-error:focus {
+  border-bottom-color: #e74c3c;
+}
+
+/* Icône dans l'input (à droite) */
+.auth-input-icon {
+  position: absolute;
+  right: 0.5rem;
+  font-size: 1.25rem;
+  pointer-events: none;
+  opacity: 0.6;
+  color: #00416A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Utilisation d'icônes SVG ou emoji selon disponibilité */
+.auth-input-icon::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+/* Message d'erreur */
+.auth-error-message {
+  font-size: 0.85rem;
+  color: #e74c3c;
+  margin-top: 0.25rem;
+  padding-left: 0;
+  font-weight: 500;
+}
+
+.auth-error-general {
+  text-align: center;
+  padding: 0.75rem;
+  background: rgba(231, 76, 60, 0.1);
+  border-radius: 8px;
+  border-left: 3px solid #e74c3c;
+  margin-top: 0.5rem;
+}
+
+/* Bouton de soumission avec gradient horizontal */
+.auth-submit-button {
+  width: 100%;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(90deg, #010D17 0%, #00416A 50%, #56AFC9 100%);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+  box-shadow: 0 4px 15px rgba(0, 65, 106, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.auth-submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 65, 106, 0.4);
+  background: linear-gradient(90deg, #6BC0D9 0%, #005A8F 50%, #021A2F 100%);
+}
+
+.auth-submit-button:active {
+  transform: translateY(0);
+}
+
+.auth-submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Liens de navigation */
+.auth-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  gap: 1rem;
+}
+
+.auth-links-single {
+  justify-content: center;
+}
+
+.auth-link {
+  font-size: 0.95rem;
+  color: rgba(0, 65, 106, 0.8);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.auth-link:hover {
+  color: #56AFC9;
+  text-decoration: underline;
+}
+
+/* Responsive Design - Tablette */
+@media (max-width: 968px) {
+  .auth-container {
+    padding: 0;
+  }
+
+  .auth-wrapper {
+    flex-direction: column;
+    height: 100%;
+    gap: 0;
+  }
+
+  .auth-wrapper-register {
+    flex-direction: column;
+  }
+
+  .auth-image-panel {
+    flex: 0 0 40%;
+    padding: 1.5rem;
+    width: 100%;
+    min-height: 0;
+  }
+
+  .auth-image-frame {
+    border-radius: 24px;
+  }
+
+  .auth-form-panel {
+    flex: 1;
+    padding: 2.5rem;
+    width: 100%;
+    border-radius: 24px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: -20px;
+    z-index: 3;
+  }
+
+  .auth-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .auth-form-content {
+    max-width: 100%;
+  }
+}
+
+/* Responsive Design - Mobile */
+@media (max-width: 640px) {
+  .auth-container {
+    padding: 0;
+    background: linear-gradient(180deg, #010D17 0%, #00416A 100%);
+  }
+
+  .auth-wrapper {
+    border-radius: 0;
+    height: 100%;
+  }
+
+  .auth-image-panel {
+    padding: 0;
+    display: none; /* Masquer l'image sur mobile selon les maquettes */
+  }
+
+  .auth-image-frame {
+    min-height: 0;
+  }
+
+  .auth-form-panel {
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    background: rgba(200, 220, 240, 0.3);
+    width: 100%;
+  }
+
+  .auth-title {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .auth-form {
+    gap: 1.5rem;
+  }
+
+  .auth-input {
+    padding: 0.875rem 2.5rem 0.875rem 0;
+    font-size: 1rem;
+  }
+
+  .auth-submit-button {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  .auth-links {
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: center;
+    padding-top: 1rem;
+  }
+
+  .auth-link {
+    font-size: 0.9rem;
+  }
+}
+
+/* Styles spécifiques pour les icônes */
+.auth-input-icon.user-icon::before {
+  content: '👤';
+  font-size: 1.2rem;
+}
+
+.auth-input-icon.email-icon::before {
+  content: '✉️';
+  font-size: 1.2rem;
+}
+
+.auth-input-icon.password-icon::before {
+  content: '🔒';
+  font-size: 1.2rem;
+}
