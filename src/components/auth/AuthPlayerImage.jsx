@@ -1,5 +1,5 @@
-import playerImage from '../assets/player.jpg';
-import '../pages/auth/Auth.css';
+import playerImage from '../../assets/player.jpg';
+import '../../pages/auth/Auth.css';
 
 /**
  * Composant pour afficher l'image du joueur dans les pages d'authentification

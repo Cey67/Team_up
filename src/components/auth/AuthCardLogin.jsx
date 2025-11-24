@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import '../pages/auth/Auth.css';
+import '../../pages/auth/Auth.css';
 
 function AuthCardLogin() {
   const handleSubmit = (e) => {
