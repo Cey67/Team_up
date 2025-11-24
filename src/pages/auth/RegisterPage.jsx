@@ -1,5 +1,5 @@
-import AuthCardRegister from '../../components/AuthCardRegister';
-import AuthPlayerImage from '../../components/AuthPlayerImage';
+import AuthCardRegister from '../../components/auth/AuthCardRegister';
+import AuthPlayerImage from '../../components/auth/AuthPlayerImage';
 import './Auth.css';
 
 /**
