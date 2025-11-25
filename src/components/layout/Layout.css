@@ -1,0 +1,51 @@
+/**
+ * Styles pour le composant Layout
+ * Gère l'affichage de la sidebar et du contenu principal
+ */
+
+.layout-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.layout-main {
+  flex: 1;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: all 0.3s ease;
+  min-width: 0; /* Permet au contenu de se rétrécir correctement */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: transparent;
+}
+
+/* Quand la sidebar est étendue */
+.layout-main.sidebar-expanded {
+  /* Pas besoin de margin-left car la sidebar est dans le flex container */
+}
+
+/* Quand la sidebar est réduite */
+.layout-main.sidebar-collapsed {
+  /* Pas besoin de margin-left car la sidebar est dans le flex container */
+}
+
+/* Responsive: sur petits écrans, la sidebar peut être masquée */
+@media (max-width: 768px) {
+  .layout-main {
+    margin-left: 0;
+  }
+  
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  
+  .sidebar-expanded {
+    transform: translateX(0);
+  }
+}
+

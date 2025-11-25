@@ -1,0 +1,187 @@
+/**
+ * Styles pour le composant Sidebar
+ * Sidebar verticale dépliable avec fond bleu clair et bordures grises foncées
+ */
+
+.sidebar {
+  position: relative;
+  height: 100vh;
+  background-color: #F0F8FF; /* Alice Blue */
+  border-right: 2px solid #2F2F2F; /* Bordure grise foncée */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 1rem;
+  transition: width 0.3s ease;
+  z-index: 1000;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.sidebar-expanded {
+  width: 250px;
+}
+
+.sidebar-collapsed {
+  width: 80px;
+}
+
+/* Logo Team Up */
+.sidebar-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% - 1rem);
+  padding: 0;
+  margin: 0 0.5rem 1rem 0.5rem;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  height: auto;
+  min-height: 80px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.logo-img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin: 0;
+}
+
+.logo-text {
+  color: #87CEFA; /* Texte bleu clair */
+  font-weight: bold;
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Bouton toggle */
+.sidebar-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.75rem;
+  margin: 0 0.5rem 1rem 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% - 1rem);
+  box-sizing: border-box;
+  flex-shrink: 0;
+  height: auto;
+}
+
+.sidebar-toggle:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.menu-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* Navigation */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0;
+  flex: 1;
+  box-sizing: border-box;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  margin: 0 0.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #2F2F2F;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  width: calc(100% - 1rem);
+}
+
+.nav-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.nav-item-active {
+  background-color: rgba(0, 191, 255, 0.2); /* Fond bleu pour l'item actif */
+  border-color: #00BFFF;
+  font-weight: 600;
+}
+
+.nav-item-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.nav-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.nav-label {
+  white-space: nowrap;
+  font-size: 0.95rem;
+  color: #2F2F2F;
+}
+
+/* Quand la sidebar est réduite, masquer les labels */
+.sidebar-collapsed .nav-label,
+.sidebar-collapsed .logo-text {
+  display: none;
+}
+
+.sidebar-collapsed .sidebar-logo {
+  min-height: 80px;
+  padding: 0;
+  width: calc(100% - 1rem);
+  margin: 0 0.5rem 1rem 0.5rem;
+}
+
+.sidebar-collapsed .nav-item {
+  justify-content: center;
+  padding: 0.75rem;
+  margin: 0 0.5rem;
+  width: calc(100% - 1rem);
+}
+
+/* Scrollbar personnalisée */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+

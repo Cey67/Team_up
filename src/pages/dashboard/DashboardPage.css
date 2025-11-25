@@ -5,25 +5,20 @@
  */
 
 .dashboard-container {
-  min-height: 100vh;
-  width: 100vw;
-  max-width: 100vw;
+  width: 100%;
+  min-height: 100%;
+  height: auto;
   display: flex;
   align-items: flex-start;
   justify-content: center;
   background: linear-gradient(135deg, #010D17 0%, #00416A 50%, #56AFC9 100%);
+  background-attachment: fixed;
   padding: 2rem;
   margin: 0;
   box-sizing: border-box;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
   color: #ffffff;
   -webkit-overflow-scrolling: touch;
+  flex: 1;
 }
 
 .dashboard-content {
