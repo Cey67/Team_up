@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage/HomePage';
 import DashboardPage from './pages/dashboard/DashboardPage';
 // import MatchPage from './pages/match/MatchPage'; // Temporairement désactivé
 import EffectifPage from './pages/effectif/EffectifPage';
+import StatistiquesPage from './pages/statistiques/StatistiquesPage';
 import Layout from './components/layout/Layout';
 
 /**
@@ -27,6 +28,7 @@ function App() {
           <Route path="/dashboard" element={<DashboardPage />} />
           {/* <Route path="/match" element={<MatchPage />} /> Temporairement désactivé */}
           <Route path="/effectif" element={<EffectifPage />} />
+          <Route path="/statistiques" element={<StatistiquesPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
