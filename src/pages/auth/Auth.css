@@ -211,21 +211,14 @@
 .auth-input-icon {
   position: absolute;
   right: 0.5rem;
-  font-size: 1.25rem;
+  width: 20px;
+  height: 20px;
   pointer-events: none;
   opacity: 0.8;
-  color: #ffffff;
+  object-fit: contain;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-/* Utilisation d'icônes SVG ou emoji selon disponibilité */
-.auth-input-icon::before {
-  content: '';
-  display: block;
-  width: 20px;
-  height: 20px;
 }
 
 /* Message d'erreur */
@@ -416,18 +409,4 @@
   }
 }
 
-/* Styles spécifiques pour les icônes */
-.auth-input-icon.user-icon::before {
-  content: '👤';
-  font-size: 1.2rem;
-}
-
-.auth-input-icon.email-icon::before {
-  content: '✉️';
-  font-size: 1.2rem;
-}
-
-.auth-input-icon.password-icon::before {
-  content: '🔒';
-  font-size: 1.2rem;
-}
+/* Les icônes sont maintenant des images PNG importées directement dans les composants */

@@ -1,5 +1,8 @@
 import { Link } from 'react-router-dom';
 import '../../pages/auth/Auth.css';
+import userIcon from '../../assets/user.png';
+import emailIcon from '../../assets/email.png';
+import passwordIcon from '../../assets/mdp.png';
 
 function AuthCardRegister() {
   const handleSubmit = (e) => {
@@ -27,7 +30,7 @@ function AuthCardRegister() {
                 placeholder="votre_nom_utilisateur"
                 autoComplete="username"
               />
-              <span className="auth-input-icon user-icon"></span>
+              <img src={userIcon} alt="User icon" className="auth-input-icon" />
             </div>
           </div>
 
@@ -45,7 +48,7 @@ function AuthCardRegister() {
                 placeholder="votre.email@exemple.com"
                 autoComplete="email"
               />
-              <span className="auth-input-icon email-icon"></span>
+              <img src={emailIcon} alt="Email icon" className="auth-input-icon" />
             </div>
           </div>
 
@@ -63,7 +66,7 @@ function AuthCardRegister() {
                 placeholder="••••••••"
                 autoComplete="new-password"
               />
-              <span className="auth-input-icon password-icon"></span>
+              <img src={passwordIcon} alt="Password icon" className="auth-input-icon" />
             </div>
           </div>
 
