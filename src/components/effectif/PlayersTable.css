@@ -1,0 +1,202 @@
+/**
+ * Styles pour le composant PlayersTable
+ * Tableau responsive avec toutes les informations des joueurs
+ */
+
+.players-table-container {
+  width: 100%;
+  overflow-x: auto;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.players-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1000px;
+}
+
+.players-table thead {
+  background: #333;
+  color: #ffffff;
+}
+
+.players-table th {
+  padding: 1rem 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #444;
+}
+
+.players-table th:first-child {
+  padding-left: 1rem;
+}
+
+.players-table th:last-child {
+  padding-right: 1rem;
+}
+
+.players-table tbody tr {
+  background: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  transition: background-color 0.2s ease;
+}
+
+.players-table tbody tr:hover {
+  background: #f5f5f5;
+}
+
+.players-table tbody tr.selected {
+  background: #e3f2fd;
+}
+
+.players-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.players-table td {
+  padding: 1rem 0.75rem;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.players-table td:first-child {
+  padding-left: 1rem;
+}
+
+.players-table td:last-child {
+  padding-right: 1rem;
+}
+
+/* Colonnes spécifiques */
+.checkbox-col {
+  width: 40px;
+  text-align: center;
+}
+
+.checkbox-col input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #56AFC9;
+}
+
+.number-col {
+  width: 50px;
+  text-align: center;
+  font-weight: 600;
+  color: #666;
+}
+
+.photo-col {
+  width: 60px;
+  text-align: center;
+}
+
+.player-photo,
+.player-photo-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.player-photo {
+  object-fit: cover;
+  border: 2px solid #e0e0e0;
+}
+
+.player-photo-placeholder {
+  background: linear-gradient(135deg, #00416A 0%, #56AFC9 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.85rem;
+  border: 2px solid #e0e0e0;
+}
+
+.lastname-col {
+  font-weight: 600;
+  min-width: 120px;
+}
+
+.firstname-col {
+  min-width: 120px;
+}
+
+.role-col {
+  min-width: 140px;
+  color: #666;
+}
+
+.admin-col {
+  width: 80px;
+  text-align: center;
+}
+
+.check-icon,
+.cross-icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.email-col {
+  min-width: 180px;
+  color: #666;
+}
+
+.phone-col {
+  min-width: 130px;
+  color: #666;
+}
+
+.birthdate-col {
+  min-width: 150px;
+  color: #666;
+}
+
+.no-players-message {
+  padding: 3rem;
+  text-align: center;
+  color: #999;
+  font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .players-table-container {
+    overflow-x: scroll;
+  }
+
+  .players-table {
+    font-size: 0.9rem;
+  }
+
+  .players-table th,
+  .players-table td {
+    padding: 0.75rem 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .players-table th,
+  .players-table td {
+    padding: 0.5rem 0.4rem;
+    font-size: 0.85rem;
+  }
+
+  .player-photo,
+  .player-photo-placeholder {
+    width: 32px;
+    height: 32px;
+    font-size: 0.75rem;
+  }
+}
+

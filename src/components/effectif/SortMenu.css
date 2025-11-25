@@ -1,0 +1,243 @@
+/**
+ * Styles pour le composant SortMenu
+ * Menu déroulant pour trier les joueurs
+ */
+
+.sort-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.sort-menu-content {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  max-width: 450px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.3s ease-out;
+}
+
+.sort-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.sort-menu-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  color: #333;
+}
+
+.sort-menu-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  transition: color 0.2s ease;
+  border-radius: 4px;
+}
+
+.sort-menu-close:hover {
+  color: #333;
+  background: #f5f5f5;
+}
+
+.sort-menu-body {
+  padding: 1.5rem;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.sort-group {
+  margin-bottom: 2rem;
+}
+
+.sort-group:last-child {
+  margin-bottom: 0;
+}
+
+.sort-label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.sort-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sort-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.sort-option:hover {
+  background: #f5f5f5;
+}
+
+.sort-option input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #56AFC9;
+  margin: 0;
+}
+
+.sort-option span {
+  font-size: 0.95rem;
+  color: #555;
+  user-select: none;
+}
+
+.sort-order-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sort-order-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #666;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sort-order-btn:hover {
+  border-color: #56AFC9;
+  color: #56AFC9;
+  background: #f0f9ff;
+}
+
+.sort-order-btn.active {
+  border-color: #56AFC9;
+  background: linear-gradient(135deg, #00416A 0%, #56AFC9 100%);
+  color: #ffffff;
+}
+
+.sort-order-btn svg {
+  flex-shrink: 0;
+}
+
+.sort-menu-footer {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-top: 1px solid #e0e0e0;
+  justify-content: flex-end;
+}
+
+.sort-btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.sort-btn-reset {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.sort-btn-reset:hover {
+  background: #e0e0e0;
+  color: #333;
+}
+
+.sort-btn-apply {
+  background: linear-gradient(135deg, #00416A 0%, #56AFC9 100%);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 65, 106, 0.3);
+}
+
+.sort-btn-apply:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 65, 106, 0.4);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sort-menu-content {
+    max-width: 100%;
+    max-height: 95vh;
+  }
+
+  .sort-menu-header,
+  .sort-menu-body,
+  .sort-menu-footer {
+    padding: 1.25rem;
+  }
+
+  .sort-menu-footer {
+    flex-direction: column-reverse;
+  }
+
+  .sort-btn {
+    width: 100%;
+  }
+}
+
