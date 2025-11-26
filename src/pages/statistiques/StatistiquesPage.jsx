@@ -1,5 +1,7 @@
+import { useState, useEffect } from 'react';
 import './StatistiquesPage.css';
 import PlayerStatsCard from '../../components/statistiques/PlayerStatsCard';
+import { statisticsService } from '../../services/api';
 
 /**
  * Page de statistiques des joueurs
@@ -7,80 +9,62 @@ import PlayerStatsCard from '../../components/statistiques/PlayerStatsCard';
  * Statistiques affichées : matchs joués, buts marqués, passes décisives
  */
 function StatistiquesPage() {
-  // Données mockées - à remplacer par des données réelles plus tard
-  const playersStats = [
-    {
-      id: 1,
-      name: 'Jean Dupont',
-      photo: null,
-      matchesPlayed: 15,
-      goals: 8,
-      assists: 5
-    },
-    {
-      id: 2,
-      name: 'Marie Martin',
-      photo: null,
-      matchesPlayed: 12,
-      goals: 12,
-      assists: 3
-    },
-    {
-      id: 3,
-      name: 'Pierre Bernard',
-      photo: null,
-      matchesPlayed: 18,
-      goals: 5,
-      assists: 10
-    },
-    {
-      id: 4,
-      name: 'Sophie Dubois',
-      photo: null,
-      matchesPlayed: 14,
-      goals: 6,
-      assists: 7
-    },
-    {
-      id: 5,
-      name: 'Lucas Moreau',
-      photo: null,
-      matchesPlayed: 16,
-      goals: 10,
-      assists: 4
-    },
-    {
-      id: 6,
-      name: 'Emma Leroy',
-      photo: null,
-      matchesPlayed: 13,
-      goals: 4,
-      assists: 8
-    },
-    {
-      id: 7,
-      name: 'Thomas Petit',
-      photo: null,
-      matchesPlayed: 17,
-      goals: 7,
-      assists: 6
-    },
-    {
-      id: 8,
-      name: 'Léa Rousseau',
-      photo: null,
-      matchesPlayed: 11,
-      goals: 9,
-      assists: 2
-    }
-  ];
+  const [playersStats, setPlayersStats] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  /**
+   * Charge les statistiques depuis l'API json-server
+   * S'exécute au montage du composant
+   */
+  useEffect(() => {
+    const loadStatistics = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const stats = await statisticsService.getAll();
+        setPlayersStats(stats);
+      } catch (err) {
+        console.error('Erreur lors du chargement des statistiques:', err);
+        setError('Impossible de charger les statistiques. Vérifiez que json-server est démarré.');
+        // En cas d'erreur, on garde un tableau vide pour éviter les erreurs de rendu
+        setPlayersStats([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadStatistics();
+  }, []);
 
   return (
     <div className="statistiques-container">
       <div className="statistiques-content">
         <h1 className="statistiques-title">Statistiques des joueurs</h1>
 
-        {playersStats.length === 0 ? (
+        {/* Affichage des erreurs */}
+        {error && (
+          <div style={{ 
+            padding: '1rem', 
+            backgroundColor: '#fee', 
+            color: '#c33', 
+            borderRadius: '8px',
+            marginBottom: '1rem'
+          }}>
+            {error}
+          </div>
+        )}
+
+        {/* Affichage du chargement */}
+        {loading ? (
+          <div style={{ 
+            padding: '2rem', 
+            textAlign: 'center',
+            color: '#666'
+          }}>
+            Chargement des statistiques...
+          </div>
+        ) : playersStats.length === 0 ? (
           <div className="statistiques-empty">
             <p>Aucune statistique disponible pour le moment.</p>
           </div>

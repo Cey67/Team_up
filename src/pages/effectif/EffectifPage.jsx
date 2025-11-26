@@ -1,10 +1,11 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import './EffectifPage.css';
 import TeamHeader from '../../components/effectif/TeamHeader';
 import EffectifSearchBar from '../../components/effectif/EffectifSearchBar';
 import PlayersTable from '../../components/effectif/PlayersTable';
 import FilterModal from '../../components/effectif/FilterModal';
 import SortMenu from '../../components/effectif/SortMenu';
+import { playersService } from '../../services/api';
 
 /**
  * Page de gestion de l'effectif
@@ -14,71 +15,36 @@ import SortMenu from '../../components/effectif/SortMenu';
 function EffectifPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [filters, setFilters] = useState({ role: 'all' });
-  const [sort, setSort] = useState({ field: 'lastName', order: 'asc' });
+  const [sort, setSort] = useState({ field: 'jerseyNumber', order: 'asc' });
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
+  const [allPlayers, setAllPlayers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   /**
-   * Données mockées des joueurs
-   * À remplacer par un appel API dans le futur
+   * Charge les joueurs depuis l'API json-server
+   * S'exécute au montage du composant
    */
-  const allPlayers = [
-    {
-      id: 1,
-      firstName: 'Ceyhun',
-      lastName: 'SAPMAZ',
-      role: 'Joueur',
-      isAdmin: true,
-      email: 'ceyhuns@gmail.com',
-      phone: '0769669900',
-      dateOfBirth: '2004-06-22',
-      photo: null
-    },
-    {
-      id: 2,
-      firstName: 'Kenan',
-      lastName: 'TEKBAS',
-      role: 'Joueur',
-      isAdmin: false,
-      email: 'kenant@gmail.com',
-      phone: '0796996600',
-      dateOfBirth: '2005-04-13',
-      photo: null
-    },
-    {
-      id: 3,
-      firstName: 'Alexandre',
-      lastName: 'DUPONT',
-      role: 'Joueur',
-      isAdmin: false,
-      email: 'alex.dupont@example.com',
-      phone: '0612345678',
-      dateOfBirth: '1998-03-15',
-      photo: null
-    },
-    {
-      id: 4,
-      firstName: 'Marie',
-      lastName: 'MARTIN',
-      role: 'Joueur',
-      isAdmin: false,
-      email: 'marie.martin@example.com',
-      phone: '0623456789',
-      dateOfBirth: '1990-07-20',
-      photo: null
-    },
-    {
-      id: 5,
-      firstName: 'Thomas',
-      lastName: 'BERNARD',
-      role: 'Joueur',
-      isAdmin: false,
-      email: 'thomas.bernard@example.com',
-      phone: '0634567890',
-      dateOfBirth: '2000-11-05',
-      photo: null
-    }
-  ];
+  useEffect(() => {
+    const loadPlayers = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const players = await playersService.getAll();
+        setAllPlayers(players);
+      } catch (err) {
+        console.error('Erreur lors du chargement des joueurs:', err);
+        setError('Impossible de charger les joueurs. Vérifiez que json-server est démarré.');
+        // En cas d'erreur, on garde un tableau vide pour éviter les erreurs de rendu
+        setAllPlayers([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadPlayers();
+  }, []);
 
   /**
    * Filtre et tri les joueurs en fonction des critères sélectionnés
@@ -109,13 +75,23 @@ function EffectifPage() {
         let aValue = a[sort.field];
         let bValue = b[sort.field];
 
+        // Gestion des valeurs nulles ou undefined (placées à la fin)
+        if (aValue == null && bValue == null) return 0;
+        if (aValue == null) return 1;
+        if (bValue == null) return -1;
+
+        // Tri numérique pour les nombres
+        if (typeof aValue === 'number' && typeof bValue === 'number') {
+          return sort.order === 'asc' ? aValue - bValue : bValue - aValue;
+        }
+
         // Conversion en minuscules pour les chaînes de caractères
         if (typeof aValue === 'string') {
           aValue = aValue.toLowerCase();
           bValue = bValue.toLowerCase();
         }
 
-        // Comparaison
+        // Comparaison pour les chaînes
         if (aValue < bValue) {
           return sort.order === 'asc' ? -1 : 1;
         }
@@ -199,11 +175,47 @@ function EffectifPage() {
           onSort={handleSort}
         />
         
-        {/* Tableau des joueurs */}
-        <PlayersTable
-          players={filteredAndSortedPlayers}
-          onPlayerSelect={handlePlayerSelect}
-        />
+        {/* Affichage des erreurs */}
+        {error && (
+          <div style={{ 
+            padding: '1rem', 
+            backgroundColor: '#fee', 
+            color: '#c33', 
+            borderRadius: '8px',
+            marginBottom: '1rem'
+          }}>
+            {error}
+          </div>
+        )}
+        
+        {/* Affichage du chargement */}
+        {loading ? (
+          <div style={{ 
+            padding: '2rem', 
+            textAlign: 'center',
+            color: '#666'
+          }}>
+            Chargement des joueurs...
+          </div>
+        ) : filteredAndSortedPlayers.length === 0 ? (
+          <div style={{ 
+            padding: '2rem', 
+            textAlign: 'center',
+            color: '#666'
+          }}>
+            {allPlayers.length === 0 
+              ? 'Aucun joueur trouvé dans la base de données.'
+              : 'Aucun joueur ne correspond à vos critères de recherche ou de filtrage.'}
+          </div>
+        ) : (
+          <>
+            {/* Tableau des joueurs */}
+            <PlayersTable
+              players={filteredAndSortedPlayers}
+              onPlayerSelect={handlePlayerSelect}
+            />
+          </>
+        )}
 
         {/* Modal de filtres */}
         <FilterModal
