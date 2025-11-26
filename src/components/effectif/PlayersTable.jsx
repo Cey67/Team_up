@@ -147,7 +147,7 @@ function PlayersTable({ players = [], onPlayerSelect }) {
                   aria-label={`Sélectionner ${player.firstName} ${player.lastName}`}
                 />
               </td>
-              <td className="number-col">{player.id}</td>
+              <td className="number-col">{player.jerseyNumber ?? player.id}</td>
               <td className="photo-col">
                 {player.photo ? (
                   <img
