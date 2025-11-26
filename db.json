@@ -1,0 +1,298 @@
+{
+  "players": [
+    {
+      "id": 1,
+      "firstName": "Ceyhun",
+      "lastName": "SAPMAZ",
+      "role": "Joueur",
+      "isAdmin": true,
+      "email": "ceyhun.sapmaz@example.com",
+      "phone": "0769669900",
+      "dateOfBirth": "2004-06-22",
+      "photo": null,
+      "position": "Gardien",
+      "jerseyNumber": 1
+    },
+    {
+      "id": 2,
+      "firstName": "Kenan",
+      "lastName": "TEKBAS",
+      "role": "Joueur",
+      "isAdmin": false,
+      "email": "kenan.tekbas@example.com",
+      "phone": "0796996600",
+      "dateOfBirth": "2005-04-13",
+      "photo": null,
+      "position": "Milieu de terrain",
+      "jerseyNumber": 68
+    },
+    {
+      "id": 3,
+      "firstName": "Eren",
+      "lastName": "KOKUS",
+      "role": "Joueur",
+      "isAdmin": false,
+      "email": "eren.kokus@example.com",
+      "phone": "0612345678",
+      "dateOfBirth": "2005-12-08",
+      "photo": null,
+      "position": "Milieu de terrain",
+      "jerseyNumber": 8
+    },
+    {
+      "id": 4,
+      "firstName": "Erwan",
+      "lastName": "BALASAR",
+      "role": "Joueur",
+      "isAdmin": false,
+      "email": "erwan.balasar@example.com",
+      "phone": "0623456789",
+      "dateOfBirth": "2005-05-19",
+      "photo": null,
+      "position": "Attaquant",
+      "jerseyNumber": 9
+    },
+    {
+      "id": 5,
+      "firstName": "Semih-Enes",
+      "lastName": "AKBAS",
+      "role": "Joueur",
+      "isAdmin": false,
+      "email": "semih-enes.akbas@example.com",
+      "phone": "0634567890",
+      "dateOfBirth": "2005-01-01",
+      "photo": null,
+      "position": "Défenseur",
+      "jerseyNumber": 31
+    },
+    {
+      "id": 6,
+      "firstName": "Okacha",
+      "lastName": "RAOU",
+      "role": "Joueur",
+      "isAdmin": false,
+      "email": "okacha.raou@example.com",
+      "phone": "0645678901",
+      "dateOfBirth": "2003-01-01",
+      "photo": null,
+      "position": "Milieu de terrain",
+      "jerseyNumber": 6
+    },
+    {
+      "id": 7,
+      "firstName": "Omar",
+      "lastName": "El Sehawy",
+      "role": "Joueur",
+      "isAdmin": false,
+      "email": "omar.elsehawy@example.com",
+      "phone": "0656789012",
+      "dateOfBirth": "2003-01-01",
+      "photo": null,
+      "position": "Défenseur",
+      "jerseyNumber": 2
+    },
+    {
+      "id": 8,
+      "firstName": "Ziyad",
+      "lastName": "El Faik",
+      "role": "Joueur",
+      "isAdmin": false,
+      "email": "ziyad.elfaik@example.com",
+      "phone": "0667890123",
+      "dateOfBirth": "2003-01-01",
+      "photo": null,
+      "position": "Milieu de terrain",
+      "jerseyNumber": 10
+    },
+    {
+      "id": 9,
+      "firstName": "Najim",
+      "lastName": "DRISSI",
+      "role": "Joueur",
+      "isAdmin": false,
+      "email": "najim.drissi@example.com",
+      "phone": "0678901234",
+      "dateOfBirth": "2004-01-01",
+      "photo": null,
+      "position": "Attaquant",
+      "jerseyNumber": 7
+    },
+    {
+      "id": 10,
+      "firstName": "Aissa",
+      "lastName": "MIMOUNI",
+      "role": "Joueur",
+      "isAdmin": false,
+      "email": "aissa.mimouni@example.com",
+      "phone": "0689012345",
+      "dateOfBirth": "2003-01-01",
+      "photo": null,
+      "position": "Gardien",
+      "jerseyNumber": 99
+    }
+  ],
+  "statistics": [
+    {
+      "id": 1,
+      "playerId": 1,
+      "name": "Ceyhun SAPMAZ",
+      "photo": null,
+      "matchesPlayed": 18,
+      "goals": 0,
+      "assists": 0,
+      "yellowCards": 1,
+      "redCards": 0,
+      "cleanSheets": 9,
+      "saves": 52
+    },
+    {
+      "id": 2,
+      "playerId": 2,
+      "name": "Kenan TEKBAS",
+      "photo": null,
+      "matchesPlayed": 16,
+      "goals": 4,
+      "assists": 11,
+      "yellowCards": 2,
+      "redCards": 0,
+      "cleanSheets": 0,
+      "saves": 0
+    },
+    {
+      "id": 3,
+      "playerId": 3,
+      "name": "Eren KOKUS",
+      "photo": null,
+      "matchesPlayed": 14,
+      "goals": 3,
+      "assists": 9,
+      "yellowCards": 1,
+      "redCards": 0,
+      "cleanSheets": 0,
+      "saves": 0
+    },
+    {
+      "id": 4,
+      "playerId": 4,
+      "name": "Erwan BALASAR",
+      "photo": null,
+      "matchesPlayed": 17,
+      "goals": 14,
+      "assists": 4,
+      "yellowCards": 1,
+      "redCards": 0,
+      "cleanSheets": 0,
+      "saves": 0
+    },
+    {
+      "id": 5,
+      "playerId": 5,
+      "name": "Semih-Enes AKBAS",
+      "photo": null,
+      "matchesPlayed": 15,
+      "goals": 1,
+      "assists": 2,
+      "yellowCards": 4,
+      "redCards": 0,
+      "cleanSheets": 0,
+      "saves": 0
+    },
+    {
+      "id": 6,
+      "playerId": 6,
+      "name": "Okacha RAOU",
+      "photo": null,
+      "matchesPlayed": 13,
+      "goals": 5,
+      "assists": 8,
+      "yellowCards": 3,
+      "redCards": 0,
+      "cleanSheets": 0,
+      "saves": 0
+    },
+    {
+      "id": 7,
+      "playerId": 7,
+      "name": "Omar El Sehawy",
+      "photo": null,
+      "matchesPlayed": 16,
+      "goals": 2,
+      "assists": 3,
+      "yellowCards": 5,
+      "redCards": 1,
+      "cleanSheets": 0,
+      "saves": 0
+    },
+    {
+      "id": 8,
+      "playerId": 8,
+      "name": "Ziyad El Faik",
+      "photo": null,
+      "matchesPlayed": 19,
+      "goals": 7,
+      "assists": 12,
+      "yellowCards": 2,
+      "redCards": 0,
+      "cleanSheets": 0,
+      "saves": 0
+    },
+    {
+      "id": 9,
+      "playerId": 9,
+      "name": "Najim DRISSI",
+      "photo": null,
+      "matchesPlayed": 15,
+      "goals": 11,
+      "assists": 5,
+      "yellowCards": 2,
+      "redCards": 0,
+      "cleanSheets": 0,
+      "saves": 0
+    },
+    {
+      "id": 10,
+      "playerId": 10,
+      "name": "Aissa MIMOUNI",
+      "photo": null,
+      "matchesPlayed": 12,
+      "goals": 0,
+      "assists": 0,
+      "yellowCards": 0,
+      "redCards": 0,
+      "cleanSheets": 5,
+      "saves": 38
+    }
+  ],
+  "teams": [
+    {
+      "id": 1,
+      "name": "FC STRASBOURG",
+      "logo": null,
+      "createdAt": "2024-01-15T10:00:00Z",
+      "description": "Équipe de football amateur basée à Strasbourg"
+    }
+  ],
+  "matches": [
+    {
+      "id": 1,
+      "date": "2024-12-15",
+      "time": "18:00",
+      "location": "Stade de la Meinau",
+      "opponent": "FC Strasbourg",
+      "status": "upcoming",
+      "teamId": 1,
+      "createdBy": 1
+    },
+    {
+      "id": 2,
+      "date": "2024-12-22",
+      "time": "19:00",
+      "location": "Complexe Sportif Nord",
+      "opponent": "AS Colmar",
+      "status": "upcoming",
+      "teamId": 1,
+      "createdBy": 1
+    }
+  ]
+}
+
