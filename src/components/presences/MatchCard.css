@@ -1,0 +1,144 @@
+/**
+ * Styles pour le composant MatchCard
+ * Design cohérent avec le reste de l'application
+ */
+
+.match-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.match-card:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.match-card-expanded {
+  border-color: rgba(86, 175, 201, 0.5);
+}
+
+.match-card-header {
+  padding: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+.match-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.match-card-date-time {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.match-card-date {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.match-card-time {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(86, 175, 201, 0.3);
+  padding: 0.25rem 0.75rem;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.match-card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.match-card-opponent {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: #ffffff;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.match-card-location {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.match-card-location::before {
+  content: '📍';
+  font-size: 0.9rem;
+}
+
+.match-card-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.match-card-header:hover .match-card-arrow {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.arrow-icon {
+  color: #ffffff;
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.arrow-icon-up {
+  transform: rotate(180deg);
+}
+
+.arrow-icon-down {
+  transform: rotate(0deg);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .match-card-header {
+    padding: 1.25rem;
+  }
+
+  .match-card-opponent {
+    font-size: 1.25rem;
+  }
+
+  .match-card-date {
+    font-size: 1rem;
+  }
+
+  .match-card-date-time {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+

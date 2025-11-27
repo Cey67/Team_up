@@ -1,0 +1,312 @@
+/**
+ * Styles pour le composant AttendanceList
+ * Affiche la liste des joueurs avec leurs statuts de présence
+ */
+
+.attendance-list {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.attendance-list-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 1.25rem 0;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.attendance-list-content {
+  width: 100%;
+}
+
+.attendance-list-empty {
+  text-align: center;
+  padding: 2rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+}
+
+.attendance-list-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.attendance-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.attendance-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateX(4px);
+}
+
+.attendance-player-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+}
+
+.attendance-player-number {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #56AFC9 0%, #00416A 100%);
+  border-radius: 50%;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(86, 175, 201, 0.3);
+}
+
+.attendance-player-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.attendance-player-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.attendance-player-position {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Statut de présence (lecture seule) */
+.attendance-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.attendance-status-present {
+  background: rgba(76, 175, 80, 0.2);
+  color: #4CAF50;
+  border: 1px solid rgba(76, 175, 80, 0.4);
+}
+
+.attendance-status-absent {
+  background: rgba(244, 67, 54, 0.2);
+  color: #F44336;
+  border: 1px solid rgba(244, 67, 54, 0.4);
+}
+
+.attendance-status-pending {
+  background: rgba(255, 152, 0, 0.2);
+  color: #FF9800;
+  border: 1px solid rgba(255, 152, 0, 0.4);
+}
+
+.status-icon {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.status-label {
+  font-size: 0.9rem;
+}
+
+/* Boutons de statut (édition) */
+.attendance-status-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.status-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.status-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.status-btn-present {
+  border-color: rgba(76, 175, 80, 0.3);
+}
+
+.status-btn-present:hover {
+  background: rgba(76, 175, 80, 0.2);
+  border-color: rgba(76, 175, 80, 0.6);
+  color: #4CAF50;
+}
+
+.status-btn-present.status-btn-active {
+  background: rgba(76, 175, 80, 0.3);
+  border-color: #4CAF50;
+  color: #4CAF50;
+  box-shadow: 0 0 12px rgba(76, 175, 80, 0.4);
+}
+
+.status-btn-pending {
+  border-color: rgba(255, 152, 0, 0.3);
+}
+
+.status-btn-pending:hover {
+  background: rgba(255, 152, 0, 0.2);
+  border-color: rgba(255, 152, 0, 0.6);
+  color: #FF9800;
+}
+
+.status-btn-pending.status-btn-active {
+  background: rgba(255, 152, 0, 0.3);
+  border-color: #FF9800;
+  color: #FF9800;
+  box-shadow: 0 0 12px rgba(255, 152, 0, 0.4);
+}
+
+.status-btn-absent {
+  border-color: rgba(244, 67, 54, 0.3);
+}
+
+.status-btn-absent:hover {
+  background: rgba(244, 67, 54, 0.2);
+  border-color: rgba(244, 67, 54, 0.6);
+  color: #F44336;
+}
+
+.status-btn-absent.status-btn-active {
+  background: rgba(244, 67, 54, 0.3);
+  border-color: #F44336;
+  color: #F44336;
+  box-shadow: 0 0 12px rgba(244, 67, 54, 0.4);
+}
+
+.status-btn-icon {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.status-btn-label {
+  font-size: 0.85rem;
+}
+
+/* Indicateur de chargement */
+.status-btn-loading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.loading-spinner {
+  font-size: 1rem;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  font-size: 0.85rem;
+}
+
+.status-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .attendance-item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .attendance-status-buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .status-btn {
+    flex: 1;
+    min-width: 100px;
+    justify-content: center;
+  }
+
+  .attendance-player-number {
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+  }
+
+  .attendance-player-name {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .attendance-list {
+    padding: 1rem;
+  }
+
+  .status-btn-label {
+    display: none;
+  }
+
+  .status-btn {
+    min-width: 50px;
+    padding: 0.5rem;
+    justify-content: center;
+  }
+}
+
