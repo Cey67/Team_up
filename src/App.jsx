@@ -7,6 +7,7 @@ import DashboardPage from './pages/dashboard/DashboardPage';
 // import MatchPage from './pages/match/MatchPage'; // Temporairement désactivé
 import EffectifPage from './pages/effectif/EffectifPage';
 import StatistiquesPage from './pages/statistiques/StatistiquesPage';
+import PresencesPage from './pages/presences/PresencesPage';
 import Layout from './components/layout/Layout';
 
 /**
@@ -29,7 +30,8 @@ function App() {
           {/* <Route path="/match" element={<MatchPage />} /> Temporairement désactivé */}
           <Route path="/effectif" element={<EffectifPage />} />
           <Route path="/statistiques" element={<StatistiquesPage />} />
-        </Route>
+          <Route path="/presences" element={<PresencesPage />} />
+        </Route> 
       </Routes>
     </BrowserRouter>
   )

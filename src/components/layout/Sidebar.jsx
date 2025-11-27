@@ -39,7 +39,7 @@ function Sidebar() {
     { path: '/effectif', icon: effectifIcon, label: 'Effectif', enabled: true },
     { path: '/statistiques', icon: statistiquesIcon, label: 'Statistiques', enabled: true },
     { path: '/match', icon: matchIcon, label: 'Match', enabled: false },
-    { path: '/presences', icon: presencesIcon, label: 'Présences', enabled: false },
+    { path: '/presences', icon: presencesIcon, label: 'Présences', enabled: true },
     { path: '/messagerie', icon: messagerieIcon, label: 'Messagerie', enabled: false },
     { path: '/parametre', icon: parametreIcon, label: 'Paramètres', enabled: false },
     { path: '/profil', icon: profilIcon, label: 'Profil', enabled: false },
