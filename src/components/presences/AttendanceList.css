@@ -4,12 +4,13 @@
  */
 
 .attendance-list {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(1, 11, 19, 0.4);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
   padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .attendance-list-title {
@@ -44,16 +45,17 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(1, 11, 19, 0.3);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
 }
 
 .attendance-item:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateX(4px);
+  background: rgba(1, 11, 19, 0.5);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .attendance-player-info {
@@ -154,8 +156,8 @@
   padding: 0.5rem 1rem;
   border: 2px solid transparent;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.7);
+  background: rgba(1, 11, 19, 0.4);
+  color: rgba(255, 255, 255, 0.8);
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
@@ -164,9 +166,9 @@
 }
 
 .status-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(1, 11, 19, 0.6);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .status-btn-present {
@@ -180,10 +182,11 @@
 }
 
 .status-btn-present.status-btn-active {
-  background: rgba(76, 175, 80, 0.3);
+  background: rgba(76, 175, 80, 0.35);
   border-color: #4CAF50;
+  border-width: 2px;
   color: #4CAF50;
-  box-shadow: 0 0 12px rgba(76, 175, 80, 0.4);
+  box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
 }
 
 .status-btn-pending {
@@ -191,16 +194,17 @@
 }
 
 .status-btn-pending:hover {
-  background: rgba(255, 152, 0, 0.2);
-  border-color: rgba(255, 152, 0, 0.6);
+  background: rgba(255, 152, 0, 0.25);
+  border-color: rgba(255, 152, 0, 0.7);
   color: #FF9800;
 }
 
 .status-btn-pending.status-btn-active {
-  background: rgba(255, 152, 0, 0.3);
+  background: rgba(255, 152, 0, 0.35);
   border-color: #FF9800;
+  border-width: 2px;
   color: #FF9800;
-  box-shadow: 0 0 12px rgba(255, 152, 0, 0.4);
+  box-shadow: 0 0 15px rgba(255, 152, 0, 0.5);
 }
 
 .status-btn-absent {
@@ -208,16 +212,17 @@
 }
 
 .status-btn-absent:hover {
-  background: rgba(244, 67, 54, 0.2);
-  border-color: rgba(244, 67, 54, 0.6);
+  background: rgba(244, 67, 54, 0.25);
+  border-color: rgba(244, 67, 54, 0.7);
   color: #F44336;
 }
 
 .status-btn-absent.status-btn-active {
-  background: rgba(244, 67, 54, 0.3);
+  background: rgba(244, 67, 54, 0.35);
   border-color: #F44336;
+  border-width: 2px;
   color: #F44336;
-  box-shadow: 0 0 12px rgba(244, 67, 54, 0.4);
+  box-shadow: 0 0 15px rgba(244, 67, 54, 0.5);
 }
 
 .status-btn-icon {

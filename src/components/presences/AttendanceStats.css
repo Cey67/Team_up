@@ -4,13 +4,14 @@
  */
 
 .attendance-stats {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(1, 11, 19, 0.4);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .attendance-stats-header {
@@ -61,32 +62,33 @@
   align-items: center;
   gap: 0.75rem;
   padding: 1rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(1, 11, 19, 0.3);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
 }
 
 .stat-item:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  background: rgba(1, 11, 19, 0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .stat-item-present {
-  border-left: 3px solid #4CAF50;
+  border-left: 4px solid #4CAF50;
 }
 
 .stat-item-absent {
-  border-left: 3px solid #F44336;
+  border-left: 4px solid #F44336;
 }
 
 .stat-item-pending {
-  border-left: 3px solid #FF9800;
+  border-left: 4px solid #FF9800;
 }
 
 .stat-item-total {
-  border-left: 3px solid #56AFC9;
+  border-left: 4px solid #56AFC9;
 }
 
 .stat-icon {
