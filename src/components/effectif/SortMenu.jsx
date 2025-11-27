@@ -47,6 +47,7 @@ function SortMenu({ isOpen, onClose, currentSort = { field: null, order: 'asc' }
   const sortOptions = [
     { value: 'lastName', label: 'Nom' },
     { value: 'firstName', label: 'Prénom' },
+    { value: 'position', label: 'Postes' },
     { value: 'id', label: 'Numéro' }
   ];
 

@@ -60,7 +60,7 @@
       "isAdmin": false,
       "email": "semih-enes.akbas@example.com",
       "phone": "0634567890",
-      "dateOfBirth": "2005-01-01",
+      "dateOfBirth": "2005-04-24",
       "photo": null,
       "position": "Défenseur",
       "jerseyNumber": 31
@@ -81,12 +81,12 @@
     {
       "id": "7",
       "firstName": "Omar",
-      "lastName": "El Sehawy",
+      "lastName": "El Shehawy",
       "role": "Joueur",
       "isAdmin": false,
-      "email": "omar.elsehawy@example.com",
+      "email": "omar.el-shehawy@example.com",
       "phone": "0656789012",
-      "dateOfBirth": "2003-01-01",
+      "dateOfBirth": "2003-08-12",
       "photo": null,
       "position": "Défenseur",
       "jerseyNumber": 2
@@ -99,7 +99,7 @@
       "isAdmin": false,
       "email": "ziyad.elfaik@example.com",
       "phone": "0667890123",
-      "dateOfBirth": "2003-01-01",
+      "dateOfBirth": "2003-08-10",
       "photo": null,
       "position": "Milieu de terrain",
       "jerseyNumber": 10
@@ -112,7 +112,7 @@
       "isAdmin": false,
       "email": "najim.drissi@example.com",
       "phone": "0678901234",
-      "dateOfBirth": "2004-01-01",
+      "dateOfBirth": "2004-08-09",
       "photo": null,
       "position": "Attaquant",
       "jerseyNumber": 7
@@ -125,7 +125,7 @@
       "isAdmin": false,
       "email": "aissa.mimouni@example.com",
       "phone": "0689012345",
-      "dateOfBirth": "2003-01-01",
+      "dateOfBirth": "2003-08-10",
       "photo": null,
       "position": "Gardien",
       "jerseyNumber": 99
@@ -213,7 +213,7 @@
     {
       "id": "7",
       "playerId": 7,
-      "name": "Omar El Sehawy",
+      "name": "Omar El Shehawy",
       "photo": null,
       "matchesPlayed": 16,
       "goals": 2,
