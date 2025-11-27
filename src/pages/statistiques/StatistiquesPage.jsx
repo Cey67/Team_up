@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './StatistiquesPage.css';
 import PlayerStatsCard from '../../components/statistiques/PlayerStatsCard';
-import { statisticsService } from '../../services/api';
+import { statisticsService, playersService } from '../../services/api';
 
 /**
  * Page de statistiques des joueurs
@@ -15,6 +15,7 @@ function StatistiquesPage() {
 
   /**
    * Charge les statistiques depuis l'API json-server
+   * Enrichit les statistiques avec le poste de chaque joueur
    * S'exécute au montage du composant
    */
   useEffect(() => {
@@ -22,8 +23,36 @@ function StatistiquesPage() {
       try {
         setLoading(true);
         setError(null);
-        const stats = await statisticsService.getAll();
-        setPlayersStats(stats);
+        
+        // Charge les statistiques et les joueurs en parallèle
+        const [stats, players] = await Promise.all([
+          statisticsService.getAll(),
+          playersService.getAll()
+        ]);
+        
+        // Crée un map des joueurs par ID pour faciliter la recherche
+        // Gère les cas où les IDs sont des strings ou des nombres
+        const playersMap = new Map();
+        players.forEach(player => {
+          const id = String(player.id);
+          playersMap.set(id, player);
+          // Ajoute aussi la version numérique si l'ID est une string numérique
+          if (!isNaN(Number(id))) {
+            playersMap.set(Number(id), player);
+          }
+        });
+        
+        // Enrichit les statistiques avec le poste de chaque joueur
+        const enrichedStats = stats.map(stat => {
+          // Essaie d'abord avec le playerId tel quel, puis en string
+          const player = playersMap.get(stat.playerId) || playersMap.get(String(stat.playerId));
+          return {
+            ...stat,
+            position: player?.position || null
+          };
+        });
+        
+        setPlayersStats(enrichedStats);
       } catch (err) {
         console.error('Erreur lors du chargement des statistiques:', err);
         setError('Impossible de charger les statistiques. Vérifiez que json-server est démarré.');
