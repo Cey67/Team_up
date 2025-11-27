@@ -49,6 +49,7 @@ function PlayersTable({ players = [], onPlayerSelect }) {
       firstName: 'Ceyhun',
       lastName: 'SAPMAZ',
       role: 'Joueur + Coach',
+      position: 'Gardien',
       isAdmin: true,
       email: 'ceyhuns@gmail.com',
       phone: '0769669900',
@@ -60,6 +61,7 @@ function PlayersTable({ players = [], onPlayerSelect }) {
       firstName: 'Kenan',
       lastName: 'TEKBAS',
       role: 'Joueur',
+      position: 'Milieu de terrain',
       isAdmin: false,
       email: 'kenant@gmail.com',
       phone: '0796996600',
@@ -126,7 +128,7 @@ function PlayersTable({ players = [], onPlayerSelect }) {
             <th>Photo</th>
             <th>Nom</th>
             <th>Prénom</th>
-            <th>Rôle</th>
+            <th>Postes</th>
             <th>Admin</th>
             <th>E-mail</th>
             <th>Téléphone</th>
@@ -163,7 +165,7 @@ function PlayersTable({ players = [], onPlayerSelect }) {
               </td>
               <td className="lastname-col">{player.lastName}</td>
               <td className="firstname-col">{player.firstName}</td>
-              <td className="role-col">{player.role}</td>
+              <td className="role-col">{player.position || 'Non défini'}</td>
               <td className="admin-col">
                 {player.isAdmin ? (
                   <svg
