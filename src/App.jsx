@@ -8,6 +8,7 @@ import DashboardPage from './pages/dashboard/DashboardPage';
 import EffectifPage from './pages/effectif/EffectifPage';
 import StatistiquesPage from './pages/statistiques/StatistiquesPage';
 import PresencesPage from './pages/presences/PresencesPage';
+import MessageriePage from './pages/messagerie/MessageriePage';
 import Layout from './components/layout/Layout';
 
 /**
@@ -31,6 +32,7 @@ function App() {
           <Route path="/effectif" element={<EffectifPage />} />
           <Route path="/statistiques" element={<StatistiquesPage />} />
           <Route path="/presences" element={<PresencesPage />} />
+          <Route path="/messagerie" element={<MessageriePage />} />
         </Route> 
       </Routes>
     </BrowserRouter>
