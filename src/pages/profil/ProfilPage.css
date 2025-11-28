@@ -1,0 +1,337 @@
+/**
+ * Styles pour la page Profil
+ * Design cohérent avec le reste de l'application (gradient bleu)
+ * Layout en deux colonnes : gauche (avatar + nav) et droite (formulaire)
+ */
+
+.profil-container {
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background: linear-gradient(135deg, #010D17 0%, #00416A 50%, #56AFC9 100%);
+  background-attachment: fixed;
+  padding: 2rem;
+  margin: 0;
+  box-sizing: border-box;
+  color: #ffffff;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.profil-content {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem 0 3rem 0;
+  margin: auto;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.profil-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Card principale du profil */
+.profil-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 2.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  min-height: 600px;
+  transition: all 0.3s ease;
+}
+
+.profil-card:hover {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.profil-card-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 3rem;
+  align-items: flex-start;
+}
+
+/* Section gauche : Avatar + Navigation */
+.profil-left-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.profil-avatar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.profil-user-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Boutons de navigation */
+.profil-nav-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.profil-nav-btn {
+  padding: 1rem 1.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  text-align: left;
+  backdrop-filter: blur(5px);
+}
+
+.profil-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateX(4px);
+}
+
+.profil-nav-btn-active {
+  background: linear-gradient(90deg, #00416A 0%, #56AFC9 100%);
+  border-color: rgba(255, 255, 255, 0.5);
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(0, 65, 106, 0.3);
+}
+
+.profil-nav-btn-active:hover {
+  background: linear-gradient(90deg, #005A8F 0%, #6BC0D9 100%);
+  transform: translateX(4px);
+}
+
+/* Section droite : Formulaire */
+.profil-right-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.profil-form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.profil-form-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.profil-required {
+  color: #ff6b6b;
+  font-weight: 700;
+}
+
+.profil-form-input {
+  padding: 0.875rem 1.25rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: inherit;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.profil-form-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.profil-form-input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 3px rgba(86, 175, 201, 0.2);
+}
+
+.profil-form-input:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Actions du formulaire */
+.profil-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profil-save-btn {
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(90deg, #010D17 0%, #00416A 50%, #56AFC9 100%);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 65, 106, 0.3);
+  letter-spacing: 0.5px;
+  min-width: 150px;
+}
+
+.profil-save-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 65, 106, 0.4);
+  background: linear-gradient(90deg, #6BC0D9 0%, #005A8F 50%, #021A2F 100%);
+}
+
+.profil-save-btn:active {
+  transform: translateY(0);
+}
+
+.profil-save-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(86, 175, 201, 0.4), 0 4px 15px rgba(0, 65, 106, 0.3);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .profil-card-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .profil-left-section {
+    align-items: center;
+  }
+
+  .profil-nav-buttons {
+    max-width: 400px;
+    width: 100%;
+  }
+
+  .profil-nav-btn {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .profil-container {
+    padding: 1.5rem;
+  }
+
+  .profil-content {
+    gap: 1.5rem;
+    padding: 1rem 0;
+  }
+
+  .profil-title {
+    font-size: 2rem;
+  }
+
+  .profil-card {
+    padding: 1.5rem;
+    min-height: auto;
+  }
+
+  .profil-card-layout {
+    gap: 2rem;
+  }
+
+  .profil-left-section {
+    gap: 2rem;
+  }
+
+  .profil-user-name {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .profil-container {
+    padding: 1rem;
+  }
+
+  .profil-title {
+    font-size: 1.75rem;
+  }
+
+  .profil-card {
+    padding: 1.25rem;
+  }
+
+  .profil-card-layout {
+    gap: 1.5rem;
+  }
+
+  .profil-form-section {
+    gap: 0.5rem;
+  }
+
+  .profil-form-label {
+    font-size: 0.95rem;
+  }
+
+  .profil-form-input {
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .profil-nav-btn {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  .profil-save-btn {
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+    min-width: 120px;
+  }
+
+  .profil-form-actions {
+    margin-top: 0.75rem;
+    padding-top: 1rem;
+  }
+}

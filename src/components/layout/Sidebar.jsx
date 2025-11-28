@@ -42,7 +42,7 @@ function Sidebar() {
     { path: '/statistiques', icon: statistiquesIcon, label: 'Statistiques', enabled: true },
     { path: '/messagerie', icon: messagerieIcon, label: 'Messagerie', enabled: true },
     { path: '/parametre', icon: parametreIcon, label: 'Paramètres', enabled: false },
-    { path: '/profil', icon: profilIcon, label: 'Profil', enabled: false },
+    { path: '/profil', icon: profilIcon, label: 'Profil', enabled: true },
   ];
 
   return (

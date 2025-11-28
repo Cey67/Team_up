@@ -1,0 +1,64 @@
+/**
+ * Styles pour le composant ThemeToggle
+ * Design avec deux boutons côte à côte et un séparateur avec flèches
+ */
+
+.theme-toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.theme-toggle-btn {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #ffffff;
+  color: #000000;
+  min-width: 100px;
+  text-align: center;
+}
+
+.theme-toggle-btn:hover {
+  border-color: rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
+}
+
+.theme-toggle-btn.theme-toggle-active {
+  background: #000000;
+  color: #ffffff;
+  border-color: #000000;
+  font-weight: 600;
+}
+
+.theme-toggle-separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0, 0, 0, 0.4);
+  flex-shrink: 0;
+}
+
+.theme-toggle-arrow {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .theme-toggle-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+    min-width: 80px;
+  }
+
+  .theme-toggle-separator {
+    gap: 0.25rem;
+  }
+}
+
