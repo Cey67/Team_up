@@ -447,7 +447,7 @@
       "matchId": "1",
       "playerId": "2",
       "status": "pending",
-      "updatedAt": "2025-11-27T12:56:37.925Z"
+      "updatedAt": "2025-11-27T19:47:00.843Z"
     },
     {
       "id": "8bc5",
@@ -461,7 +461,89 @@
       "matchId": "1",
       "playerId": "4",
       "status": "pending",
-      "updatedAt": "2025-11-27T12:56:35.757Z"
+      "updatedAt": "2025-11-27T19:47:00.246Z"
+    },
+    {
+      "id": "6d87",
+      "matchId": "1",
+      "playerId": "5",
+      "status": "pending",
+      "updatedAt": "2025-11-27T18:54:42.119Z"
+    }
+  ],
+  "conversations": [
+    {
+      "id": "conv1",
+      "userId": "2",
+      "firstName": "Kenan",
+      "lastName": "TEKBAS",
+      "position": "Milieu de terrain",
+      "lastMessage": "Salut",
+      "lastMessageTime": "2025-11-28T15:36:00.010Z",
+      "unread": 1,
+      "photo": null,
+      "isOnline": false
+    },
+    {
+      "id": "conv2",
+      "userId": "3",
+      "firstName": "Eren",
+      "lastName": "KOKUS",
+      "position": "Milieu de terrain",
+      "lastMessage": "Super match hier !",
+      "lastMessageTime": "2024-12-01T10:00:00Z",
+      "unread": 0,
+      "photo": null,
+      "isOnline": false
+    },
+    {
+      "id": "f4a6",
+      "userId": "4",
+      "firstName": "Erwan",
+      "lastName": "BALASAR",
+      "position": "Attaquant",
+      "lastMessage": "",
+      "lastMessageTime": "2025-11-28T15:36:14.109Z",
+      "unread": 0,
+      "photo": null,
+      "isOnline": false
+    }
+  ],
+  "messages": [
+    {
+      "id": "msg1",
+      "conversationId": "conv1",
+      "senderId": "2",
+      "text": "Salut ! Ça te dit un match samedi ?",
+      "timestamp": "2024-12-01T14:00:00Z"
+    },
+    {
+      "id": "msg2",
+      "conversationId": "conv1",
+      "senderId": "1",
+      "text": "Oui, pourquoi pas !",
+      "timestamp": "2024-12-01T14:05:00Z"
+    },
+    {
+      "id": "msg3",
+      "conversationId": "conv2",
+      "senderId": "3",
+      "text": "Super match hier !",
+      "timestamp": "2024-12-01T10:00:00Z"
+    },
+    {
+      "id": "msg4",
+      "conversationId": "conv2",
+      "senderId": "1",
+      "text": "Merci, on se voit la prochaine fois !",
+      "timestamp": "2024-12-01T10:05:00Z"
+    },
+    {
+      "id": "b7d3",
+      "conversationId": "conv1",
+      "senderId": "1",
+      "text": "Salut",
+      "timestamp": "2025-11-28T15:35:59.677Z"
     }
   ]
 }

@@ -1,0 +1,132 @@
+/**
+ * Styles pour la page de messagerie
+ * Design cohérent avec le reste de l'application
+ * Les styles des composants individuels sont dans leurs propres fichiers CSS
+ */
+
+.messagerie-page-container {
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background: linear-gradient(135deg, #010D17 0%, #00416A 50%, #56AFC9 100%);
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  padding: 2rem;
+  margin: 0;
+  box-sizing: border-box;
+  color: #ffffff;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
+  position: relative;
+}
+
+/* Pseudo-élément fixe pour garantir que le background couvre toujours toute la zone visible */
+.messagerie-page-container::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #010D17 0%, #00416A 50%, #56AFC9 100%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.messagerie-page-content {
+  max-width: 1400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem 0 3rem 0;
+  margin: auto;
+  animation: fadeInUp 0.6s ease-out;
+  height: calc(100vh - 4rem);
+}
+
+.messagerie-page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+}
+
+/* Layout principal : deux panneaux côte à côte */
+.messagerie-layout {
+  display: flex;
+  gap: 1.5rem;
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+}
+
+/* Messages d'erreur et de chargement */
+.messagerie-error {
+  padding: 1rem 1.5rem;
+  background: rgba(244, 67, 54, 0.2);
+  border: 2px solid rgba(244, 67, 54, 0.5);
+  border-radius: 12px;
+  color: #ffffff;
+  font-weight: 500;
+  box-shadow: 0 4px 15px rgba(244, 67, 54, 0.2);
+  margin-bottom: 1rem;
+}
+
+.messagerie-loading {
+  padding: 3rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1rem;
+}
+
+/* Animation d'entrée */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 968px) {
+  .messagerie-layout {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .messagerie-page-container {
+    padding: 1.5rem;
+  }
+
+  .messagerie-page-content {
+    gap: 1.25rem;
+    padding: 1rem 0;
+    height: calc(100vh - 3rem);
+  }
+
+  .messagerie-page-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .messagerie-page-container {
+    padding: 1rem;
+  }
+
+  .messagerie-page-title {
+    font-size: 1.75rem;
+  }
+}

@@ -301,11 +301,143 @@ export const attendancesService = {
   },
 };
 
+/**
+ * Service pour les conversations
+ */
+export const conversationsService = {
+  /**
+   * Récupère toutes les conversations
+   * @returns {Promise<Array>} - Liste de toutes les conversations
+   */
+  getAll: async () => {
+    return fetchAPI('/conversations');
+  },
+
+  /**
+   * Récupère une conversation par son ID
+   * @param {string} id - ID de la conversation
+   * @returns {Promise<Object>} - Données de la conversation
+   */
+  getById: async (id) => {
+    return fetchAPI(`/conversations/${id}`);
+  },
+
+  /**
+   * Crée une nouvelle conversation
+   * @param {object} conversationData - Données de la conversation à créer
+   * @returns {Promise<Object>} - Conversation créée
+   */
+  create: async (conversationData) => {
+    return fetchAPI('/conversations', {
+      method: 'POST',
+      body: JSON.stringify(conversationData),
+    });
+  },
+
+  /**
+   * Met à jour une conversation
+   * @param {string} id - ID de la conversation
+   * @param {object} conversationData - Données à mettre à jour
+   * @returns {Promise<Object>} - Conversation mise à jour
+   */
+  update: async (id, conversationData) => {
+    return fetchAPI(`/conversations/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(conversationData),
+    });
+  },
+
+  /**
+   * Supprime une conversation
+   * @param {string} id - ID de la conversation
+   * @returns {Promise<void>}
+   */
+  delete: async (id) => {
+    return fetchAPI(`/conversations/${id}`, {
+      method: 'DELETE',
+    });
+  },
+};
+
+/**
+ * Service pour les messages
+ */
+export const messagesService = {
+  /**
+   * Récupère tous les messages
+   * @returns {Promise<Array>} - Liste de tous les messages
+   */
+  getAll: async () => {
+    return fetchAPI('/messages');
+  },
+
+  /**
+   * Récupère les messages d'une conversation
+   * @param {string} conversationId - ID de la conversation
+   * @returns {Promise<Array>} - Liste des messages de la conversation, triés par timestamp
+   */
+  getByConversationId: async (conversationId) => {
+    const messages = await fetchAPI(`/messages?conversationId=${conversationId}`);
+    // Trier les messages par timestamp (plus ancien en premier)
+    return messages.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+  },
+
+  /**
+   * Récupère un message par son ID
+   * @param {string} id - ID du message
+   * @returns {Promise<Object>} - Données du message
+   */
+  getById: async (id) => {
+    return fetchAPI(`/messages/${id}`);
+  },
+
+  /**
+   * Crée un nouveau message
+   * @param {object} messageData - Données du message à créer { conversationId, senderId, text }
+   * @returns {Promise<Object>} - Message créé
+   */
+  create: async (messageData) => {
+    return fetchAPI('/messages', {
+      method: 'POST',
+      body: JSON.stringify({
+        ...messageData,
+        timestamp: new Date().toISOString(),
+      }),
+    });
+  },
+
+  /**
+   * Met à jour un message
+   * @param {string} id - ID du message
+   * @param {object} messageData - Données à mettre à jour
+   * @returns {Promise<Object>} - Message mis à jour
+   */
+  update: async (id, messageData) => {
+    return fetchAPI(`/messages/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(messageData),
+    });
+  },
+
+  /**
+   * Supprime un message
+   * @param {string} id - ID du message
+   * @returns {Promise<void>}
+   */
+  delete: async (id) => {
+    return fetchAPI(`/messages/${id}`, {
+      method: 'DELETE',
+    });
+  },
+};
+
 export default {
   players: playersService,
   statistics: statisticsService,
   teams: teamsService,
   matches: matchesService,
   attendances: attendancesService,
+  conversations: conversationsService,
+  messages: messagesService,
 };
 

@@ -1,0 +1,171 @@
+/**
+ * Styles pour le composant ConversationItem
+ * Design amélioré avec des cartes distinctes, bordures colorées et indicateurs visuels
+ */
+
+.conversation-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #ffffff;
+  border: 2px solid #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+.conversation-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  border-color: rgba(0, 191, 255, 0.3);
+}
+
+.conversation-item:focus {
+  outline: 3px solid #00BFFF;
+  outline-offset: 2px;
+}
+
+.conversation-item-active {
+  background: linear-gradient(135deg, rgba(0, 191, 255, 0.1) 0%, rgba(0, 65, 106, 0.05) 100%);
+  border-color: #00BFFF;
+  box-shadow: 0 4px 16px rgba(0, 191, 255, 0.2);
+}
+
+/* Wrapper pour l'avatar avec indicateur en ligne */
+.conversation-item-avatar-wrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Avatar intégré */
+.conversation-item-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #ffffff;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #00BFFF 0%, #00416A 100%);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  font-size: 1rem;
+}
+
+.conversation-item-avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.conversation-item-avatar-initials {
+  user-select: none;
+}
+
+.conversation-item-online-indicator {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  background: #4CAF50;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.conversation-item-group-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00BFFF 0%, #00416A 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.conversation-item-group-avatar svg {
+  width: 28px;
+  height: 28px;
+}
+
+.conversation-item-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+
+.conversation-item-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #2F2F2F;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Indicateur de notification pour les messages non lus */
+.conversation-item-notification-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #00BFFF;
+  flex-shrink: 0;
+  margin-right: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 191, 255, 0.4);
+}
+
+/* Bouton de suppression */
+.conversation-item-delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  transition: all 0.2s ease;
+  border-radius: 6px;
+  flex-shrink: 0;
+  opacity: 0;
+}
+
+.conversation-item:hover .conversation-item-delete-btn {
+  opacity: 1;
+}
+
+.conversation-item-delete-btn:hover {
+  background: #fee;
+  color: #c33;
+  transform: scale(1.1);
+}
+
+.conversation-item-delete-btn:active {
+  transform: scale(0.95);
+}
+
+/* Animation pour les nouvelles conversations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.conversation-item {
+  animation: slideIn 0.3s ease-out;
+}
