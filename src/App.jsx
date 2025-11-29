@@ -35,8 +35,8 @@ function App() {
           <Route path="/statistiques" element={<StatistiquesPage />} />
           <Route path="/presences" element={<PresencesPage />} />
           <Route path="/messagerie" element={<MessageriePage />} />
-          <Route path="/profil" element={<ProfilPage />} />
           <Route path="/parametres" element={<ParametresPage />} />
+          <Route path="/profil" element={<ProfilPage />} />
         </Route> 
       </Routes>
     </BrowserRouter>
