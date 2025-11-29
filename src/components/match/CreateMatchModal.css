@@ -1,0 +1,258 @@
+/**
+ * Styles pour le composant CreateMatchModal
+ * Design cohérent avec le reste de l'application
+ */
+
+.create-match-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 1rem;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.create-match-modal {
+  background: linear-gradient(135deg, #010D17 0%, #00416A 50%, #56AFC9 100%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.create-match-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.create-match-modal-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: #ffffff;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.create-match-modal-close {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.create-match-modal-close:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+  transform: rotate(90deg);
+}
+
+.create-match-modal-close:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.create-match-modal-form {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.create-match-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.create-match-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.required {
+  color: #f87171;
+}
+
+.create-match-input,
+.create-match-select {
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.create-match-input:focus,
+.create-match-select:focus {
+  outline: none;
+  border-color: rgba(86, 175, 201, 0.6);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 3px rgba(86, 175, 201, 0.2);
+}
+
+.create-match-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.create-match-input.error,
+.create-match-select.error {
+  border-color: rgba(239, 68, 68, 0.6);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.create-match-input:disabled,
+.create-match-select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.create-match-select {
+  cursor: pointer;
+}
+
+.create-match-select option {
+  background: #010D17;
+  color: #ffffff;
+}
+
+.create-match-error {
+  font-size: 0.85rem;
+  color: #f87171;
+  margin-top: -0.25rem;
+}
+
+.create-match-hint {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0.25rem;
+  font-style: italic;
+}
+
+.create-match-error-message {
+  padding: 0.75rem;
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  border-radius: 8px;
+  color: #f87171;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.create-match-modal-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.create-match-button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.create-match-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.create-match-button-cancel {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.create-match-button-cancel:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.create-match-button-submit {
+  background: linear-gradient(90deg, #010D17 0%, #00416A 50%, #56AFC9 100%);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.create-match-button-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 65, 106, 0.4);
+  background: linear-gradient(90deg, #6BC0D9 0%, #005A8F 50%, #021A2F 100%);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .create-match-modal {
+    max-width: 100%;
+    max-height: 95vh;
+  }
+
+  .create-match-modal-header {
+    padding: 1.25rem;
+  }
+
+  .create-match-modal-form {
+    padding: 1.25rem;
+    gap: 1.25rem;
+  }
+
+  .create-match-modal-actions {
+    flex-direction: column-reverse;
+  }
+
+  .create-match-button {
+    width: 100%;
+  }
+}

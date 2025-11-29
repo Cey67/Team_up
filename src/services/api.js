@@ -190,6 +190,42 @@ export const matchesService = {
   getById: async (id) => {
     return fetchAPI(`/matches/${id}`);
   },
+
+  /**
+   * Crée un nouveau match
+   * @param {object} matchData - Données du match à créer
+   * @returns {Promise<Object>} - Match créé
+   */
+  create: async (matchData) => {
+    return fetchAPI('/matches', {
+      method: 'POST',
+      body: JSON.stringify(matchData),
+    });
+  },
+
+  /**
+   * Met à jour un match
+   * @param {number} id - ID du match
+   * @param {object} matchData - Données à mettre à jour
+   * @returns {Promise<Object>} - Match mis à jour
+   */
+  update: async (id, matchData) => {
+    return fetchAPI(`/matches/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(matchData),
+    });
+  },
+
+  /**
+   * Supprime un match
+   * @param {number} id - ID du match
+   * @returns {Promise<void>}
+   */
+  delete: async (id) => {
+    return fetchAPI(`/matches/${id}`, {
+      method: 'DELETE',
+    });
+  },
 };
 
 /**

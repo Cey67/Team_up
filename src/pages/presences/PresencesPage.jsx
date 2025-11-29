@@ -29,9 +29,39 @@ function PresencesPage() {
         setLoading(true);
         setError(null);
 
-        // Charge les matchs à venir uniquement
+        // Charge tous les matchs
         const allMatches = await matchesService.getAll();
-        const upcomingMatches = allMatches.filter(match => match.status === 'upcoming');
+        
+        // Charge toutes les présences pour recalculer le statut dynamiquement
+        const allAttendances = await attendancesService.getAll();
+        
+        // Recalcule le statut pour chaque match basé sur les présences réelles
+        const enrichedMatches = allMatches.map(match => {
+          const matchAttendances = allAttendances.filter(att => att.matchId == match.id);
+          const playersCount = matchAttendances.filter(att => att.status === 'present').length;
+          const maxPlayers = match.maxPlayers || 10;
+          
+          const matchDate = new Date(`${match.date}T${match.time || '00:00'}`);
+          const now = new Date();
+          let status;
+          
+          if (matchDate < now) {
+            status = 'finished';
+          } else if (playersCount === maxPlayers) {
+            status = 'full';
+          } else {
+            status = 'upcoming';
+          }
+          
+          return {
+            ...match,
+            playersCount,
+            status,
+          };
+        });
+        
+        // Filtre uniquement les matchs à venir (non terminés)
+        const upcomingMatches = enrichedMatches.filter(match => match.status !== 'finished');
         
         // Trie les matchs par date (plus proche en premier)
         upcomingMatches.sort((a, b) => {
@@ -46,8 +76,7 @@ function PresencesPage() {
         const allPlayers = await playersService.getAll();
         setPlayers(allPlayers);
 
-        // Charge toutes les présences
-        const allAttendances = await attendancesService.getAll();
+        // Utilise les présences déjà chargées pour le calcul du statut
         setAttendances(allAttendances);
 
         // Développe automatiquement le premier match s'il existe
@@ -67,6 +96,73 @@ function PresencesPage() {
 
     loadData();
   }, []);
+
+  /**
+   * Recharge les données quand on revient sur la page
+   * Écoute les changements de focus de la fenêtre pour synchroniser les présences
+   */
+  useEffect(() => {
+    const handleFocus = () => {
+      if (!loading) {
+        const reloadData = async () => {
+          try {
+            // Charge tous les matchs
+            const allMatches = await matchesService.getAll();
+            
+            // Charge toutes les présences pour recalculer le statut dynamiquement
+            const allAttendances = await attendancesService.getAll();
+            
+            // Recalcule le statut pour chaque match basé sur les présences réelles
+            const enrichedMatches = allMatches.map(match => {
+              const matchAttendances = allAttendances.filter(att => att.matchId == match.id);
+              const playersCount = matchAttendances.filter(att => att.status === 'present').length;
+              const maxPlayers = match.maxPlayers || 10;
+              
+              const matchDate = new Date(`${match.date}T${match.time || '00:00'}`);
+              const now = new Date();
+              let status;
+              
+              if (matchDate < now) {
+                status = 'finished';
+              } else if (playersCount === maxPlayers) {
+                status = 'full';
+              } else {
+                status = 'upcoming';
+              }
+              
+              return {
+                ...match,
+                playersCount,
+                status,
+              };
+            });
+            
+            // Filtre uniquement les matchs à venir (non terminés)
+            const upcomingMatches = enrichedMatches.filter(match => match.status !== 'finished');
+            
+            // Trie les matchs par date (plus proche en premier)
+            upcomingMatches.sort((a, b) => {
+              const dateA = new Date(`${a.date}T${a.time}`);
+              const dateB = new Date(`${b.date}T${b.time}`);
+              return dateA - dateB;
+            });
+
+            setMatches(upcomingMatches);
+            
+            // Met à jour aussi les présences pour être synchronisé
+            setAttendances(allAttendances);
+          } catch (err) {
+            console.error('Erreur lors du rechargement:', err);
+          }
+        };
+        
+        reloadData();
+      }
+    };
+
+    window.addEventListener('focus', handleFocus);
+    return () => window.removeEventListener('focus', handleFocus);
+  }, [loading]);
 
   /**
    * Gère le développement/réduction d'un match
@@ -102,15 +198,47 @@ function PresencesPage() {
           att => att.matchId === matchId && att.playerId === playerId
         );
 
+        let updatedAttendances;
         if (existingIndex >= 0) {
           // Met à jour la présence existante avec les données de l'API
-          const updated = [...prevAttendances];
-          updated[existingIndex] = updatedAttendance;
-          return updated;
+          updatedAttendances = [...prevAttendances];
+          updatedAttendances[existingIndex] = updatedAttendance;
         } else {
           // Ajoute la nouvelle présence retournée par l'API
-          return [...prevAttendances, updatedAttendance];
+          updatedAttendances = [...prevAttendances, updatedAttendance];
         }
+        
+        // Recalcule le statut du match mis à jour basé sur les nouvelles présences
+        const matchAttendances = updatedAttendances.filter(att => att.matchId === matchId);
+        const playersCount = matchAttendances.filter(att => att.status === 'present').length;
+        const maxPlayers = 10; // Fixé à 10 pour les matchs 5v5
+        
+        setMatches(prevMatches => {
+          return prevMatches.map(m => {
+            if (m.id === matchId) {
+              const matchDate = new Date(`${m.date}T${m.time || '00:00'}`);
+              const now = new Date();
+              let status;
+              
+              if (matchDate < now) {
+                status = 'finished';
+              } else if (playersCount === maxPlayers) {
+                status = 'full';
+              } else {
+                status = 'upcoming';
+              }
+              
+              return {
+                ...m,
+                playersCount,
+                status,
+              };
+            }
+            return m;
+          });
+        });
+        
+        return updatedAttendances;
       });
 
       // Efface l'erreur si la mise à jour réussit

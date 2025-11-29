@@ -36,7 +36,7 @@ function Sidebar() {
    */
   const navItems = [
     { path: '/dashboard', icon: dashboardIcon, label: 'Dashboard', enabled: true },
-    { path: '/match', icon: matchIcon, label: 'Match', enabled: false },
+    { path: '/match', icon: matchIcon, label: 'Match', enabled: true },
     { path: '/presences', icon: presencesIcon, label: 'Présences', enabled: true },
     { path: '/effectif', icon: effectifIcon, label: 'Effectif', enabled: true },
     { path: '/statistiques', icon: statistiquesIcon, label: 'Statistiques', enabled: true },

@@ -1,0 +1,180 @@
+/**
+ * Styles pour le composant MatchInfo
+ * Design cohérent avec le reste de l'application
+ */
+
+.match-info {
+  background: rgba(1, 11, 19, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.match-info-empty {
+  text-align: center;
+  padding: 2rem;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(1, 11, 19, 0.3);
+  border-radius: 12px;
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+}
+
+.match-info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.match-info-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0;
+  color: #ffffff;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.match-info-status {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.match-info-status-open {
+  background: rgba(34, 197, 94, 0.3);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.5);
+}
+
+.match-info-status-full {
+  background: rgba(239, 68, 68, 0.3);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.5);
+}
+
+.match-info-status-finished {
+  background: rgba(107, 114, 128, 0.3);
+  color: #9ca3af;
+  border: 1px solid rgba(107, 114, 128, 0.5);
+}
+
+.match-info-status-upcoming {
+  background: rgba(59, 130, 246, 0.3);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.5);
+}
+
+.match-info-status-default {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.match-info-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.match-info-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.match-info-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.match-info-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+  flex-shrink: 0;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.match-info-icon:not(img) {
+  font-size: 1.5rem;
+  width: auto;
+  height: auto;
+  filter: none;
+}
+
+.match-info-icon-location {
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+.match-info-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.match-info-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+}
+
+.match-info-value {
+  font-size: 1rem;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.match-info-score {
+  background: rgba(86, 175, 201, 0.2) !important;
+  border-color: rgba(86, 175, 201, 0.4) !important;
+}
+
+.match-info-score-value {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  color: #56AFC9 !important;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .match-info {
+    padding: 1.25rem;
+  }
+
+  .match-info-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .match-info-title {
+    font-size: 1.5rem;
+  }
+
+  .match-info-content {
+    grid-template-columns: 1fr;
+  }
+
+  .match-info-item {
+    padding: 0.75rem;
+  }
+}

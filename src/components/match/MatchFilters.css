@@ -1,0 +1,169 @@
+/**
+ * Styles pour le composant MatchFilters
+ * Design cohérent avec le reste de l'application
+ */
+
+.match-filters {
+  background: rgba(1, 11, 19, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.match-filters-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.match-filters-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  color: #ffffff;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.match-filters-reset {
+  padding: 0.5rem 1rem;
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.match-filters-reset:hover {
+  background: rgba(239, 68, 68, 0.3);
+  transform: translateY(-2px);
+}
+
+.match-filters-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.match-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.match-filter-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.match-filter-input-wrapper,
+.match-filter-select-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.match-filter-input {
+  width: 100%;
+  padding: 0.75rem;
+  margin: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.match-filter-select {
+  width: 100%;
+  padding: 0.75rem;
+  padding-right: 2.5rem;
+  margin: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  box-sizing: border-box;
+}
+
+.match-filter-input-icon,
+.match-filter-select-icon {
+  position: absolute;
+  right: 0.75rem;
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  pointer-events: none;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+.match-filter-input-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.match-filter-input:focus,
+.match-filter-select:focus {
+  outline: none;
+  border-color: rgba(86, 175, 201, 0.6);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 3px rgba(86, 175, 201, 0.2);
+}
+
+.match-filter-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.match-filter-select {
+  cursor: pointer;
+}
+
+.match-filter-select option {
+  background: #010D17;
+  color: #ffffff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .match-filters {
+    padding: 1.25rem;
+  }
+
+  .match-filters-content {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .match-filters-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}

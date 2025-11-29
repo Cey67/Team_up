@@ -4,7 +4,8 @@ import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
 import HomePage from './pages/HomePage/HomePage';
 import DashboardPage from './pages/dashboard/DashboardPage';
-// import MatchPage from './pages/match/MatchPage'; // Temporairement désactivé
+import MatchesPage from './pages/match/MatchesPage';
+import MatchDetailPage from './pages/match/MatchDetailPage';
 import EffectifPage from './pages/effectif/EffectifPage';
 import StatistiquesPage from './pages/statistiques/StatistiquesPage';
 import PresencesPage from './pages/presences/PresencesPage';
@@ -30,7 +31,8 @@ function App() {
         {/* Routes avec sidebar (pages principales) */}
         <Route element={<Layout />}>
           <Route path="/dashboard" element={<DashboardPage />} />
-          {/* <Route path="/match" element={<MatchPage />} /> Temporairement désactivé */}
+          <Route path="/match" element={<MatchesPage />} />
+          <Route path="/match/:id" element={<MatchDetailPage />} />
           <Route path="/effectif" element={<EffectifPage />} />
           <Route path="/statistiques" element={<StatistiquesPage />} />
           <Route path="/presences" element={<PresencesPage />} />

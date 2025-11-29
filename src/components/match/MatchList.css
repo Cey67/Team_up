@@ -1,0 +1,50 @@
+/**
+ * Styles pour le composant MatchList
+ * Grille responsive pour afficher les cartes de match
+ */
+
+.match-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.match-list-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(1, 11, 19, 0.3);
+  border-radius: 16px;
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+}
+
+.match-list-empty p {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.match-list-empty-subtitle {
+  font-size: 0.9rem !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .match-list {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .match-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1400px) {
+  .match-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

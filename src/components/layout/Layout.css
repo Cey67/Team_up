@@ -21,7 +21,8 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  background-color: transparent;
+  background: linear-gradient(135deg, #010D17 0%, #00416A 50%, #56AFC9 100%);
+  background-attachment: fixed;
 }
 
 /* Quand la sidebar est étendue */
