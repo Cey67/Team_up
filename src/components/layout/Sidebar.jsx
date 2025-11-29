@@ -41,7 +41,7 @@ function Sidebar() {
     { path: '/effectif', icon: effectifIcon, label: 'Effectif', enabled: true },
     { path: '/statistiques', icon: statistiquesIcon, label: 'Statistiques', enabled: true },
     { path: '/messagerie', icon: messagerieIcon, label: 'Messagerie', enabled: true },
-    { path: '/parametre', icon: parametreIcon, label: 'Paramètres', enabled: false },
+    { path: '/parametres', icon: parametreIcon, label: 'Paramètres', enabled: true },
     { path: '/profil', icon: profilIcon, label: 'Profil', enabled: true },
   ];
 
