@@ -1,5 +1,4 @@
 import './MatchInfo.css';
-import locationIcon from '../../assets/location.png';
 
 /**
  * Composant MatchInfo - Affiche les informations principales d'un match
@@ -109,7 +108,7 @@ function MatchInfo({ match }) {
         </div>
 
         <div className="match-info-item">
-          <img src={locationIcon} alt="Lieu" className="match-info-icon match-info-icon-location" />
+          <span className="match-info-icon">📍</span>
           <div className="match-info-details">
             <span className="match-info-label">Lieu</span>
             <span className="match-info-value">{match.location || 'Non défini'}</span>

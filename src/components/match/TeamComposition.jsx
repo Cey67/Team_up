@@ -1,4 +1,3 @@
-import terrainImage from '../../assets/terrain_de_foot.jpg';
 import './TeamComposition.css';
 
 /**
@@ -122,11 +121,7 @@ function TeamComposition({ teamA = [], teamB = [] }) {
       <h3 className="team-composition-title">Composition des équipes (5v5)</h3>
       
       <div className="team-composition-field-wrapper">
-        <img 
-          src={terrainImage} 
-          alt="Terrain de football" 
-          className="team-composition-field"
-        />
+        <div className="team-composition-field" />
         
         <div className="team-composition-overlay">
           {/* Équipe A (à gauche) */}

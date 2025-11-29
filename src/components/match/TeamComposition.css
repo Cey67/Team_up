@@ -32,10 +32,34 @@
 
 .team-composition-field {
   width: 100%;
-  height: auto;
-  max-height: 400px;
+  height: 400px;
+  min-height: 400px;
   display: block;
-  object-fit: cover;
+  background: linear-gradient(90deg, 
+    #2d5016 0%, 
+    #2d5016 20%, 
+    #3a6b1f 20%, 
+    #3a6b1f 80%, 
+    #2d5016 80%, 
+    #2d5016 100%
+  );
+  background-image: 
+    /* Lignes du terrain */
+    linear-gradient(to right, rgba(255, 255, 255, 0.8) 2px, transparent 2px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 2px, transparent 2px),
+    /* Cercle central */
+    radial-gradient(circle at 50% 50%, transparent 15%, rgba(255, 255, 255, 0.8) 15%, rgba(255, 255, 255, 0.8) 16%, transparent 16%),
+    /* Surface de réparation gauche */
+    linear-gradient(to right, transparent 0%, transparent 10%, rgba(255, 255, 255, 0.6) 10%, rgba(255, 255, 255, 0.6) 12%, transparent 12%),
+    /* Surface de réparation droite */
+    linear-gradient(to right, transparent 88%, rgba(255, 255, 255, 0.6) 88%, rgba(255, 255, 255, 0.6) 90%, transparent 90%);
+  background-size: 
+    50px 50px,
+    50px 50px,
+    100% 100%,
+    100% 100%,
+    100% 100%;
+  position: relative;
 }
 
 .team-composition-overlay {
