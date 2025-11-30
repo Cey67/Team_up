@@ -1,12 +1,16 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../../pages/auth/Auth.css';
 import emailIcon from '../../assets/email.png';
 import passwordIcon from '../../assets/mdp.png';
 
 function AuthCardLogin() {
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // Logique frontend uniquement - pas de validation ni d'appel API
+    // Redirection vers le dashboard après connexion
+    navigate('/dashboard');
   };
 
   return (
