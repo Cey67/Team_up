@@ -12,47 +12,31 @@ import messagerieIcon from '../../assets/messagerie.png';
 import parametreIcon from '../../assets/parametre.png';
 import profilIcon from '../../assets/user.png';
 
-/**
- * Composant Sidebar - Navigation verticale dépliable
- * Affiche le logo Team Up et les icônes de navigation
- * Peut être réduite/étendue via le bouton menu burger
- */
 function Sidebar() {
   const { isExpanded, toggleSidebar } = useSidebar();
   const location = useLocation();
 
-  /**
-   * Vérifie si une route est active
-   * @param {string} path - Le chemin à vérifier
-   * @returns {boolean} - True si la route est active
-   */
   const isActive = (path) => {
     return location.pathname === path;
   };
 
-  /**
-   * Configuration des éléments de navigation
-   * Seuls dashboard et effectif sont activés pour l'instant
-   */
   const navItems = [
     { path: '/dashboard', icon: dashboardIcon, label: 'Dashboard', enabled: true },
     { path: '/match', icon: matchIcon, label: 'Match', enabled: true },
     { path: '/presences', icon: presencesIcon, label: 'Présences', enabled: true },
     { path: '/effectif', icon: effectifIcon, label: 'Effectif', enabled: true },
     { path: '/statistiques', icon: statistiquesIcon, label: 'Statistiques', enabled: true },
-    { path: '/messagerie', icon: messagerieIcon, label: 'Messagerie', enabled: true },
+    { path: '/messagerie', icon: messagerieIcon, label: 'Messagerie', enabled: false }, // Mise en stand-by - fonctionnalité complexe non prioritaire
     { path: '/parametres', icon: parametreIcon, label: 'Paramètres', enabled: true },
     { path: '/profil', icon: profilIcon, label: 'Profil', enabled: true },
   ];
 
   return (
     <aside className={`sidebar ${isExpanded ? 'sidebar-expanded' : 'sidebar-collapsed'}`}>
-      {/* Logo Team Up */}
       <div className="sidebar-logo">
         <img src={logo} alt="Team Up" className="logo-img" />
       </div>
 
-      {/* Bouton menu burger */}
       <button 
         className="sidebar-toggle" 
         onClick={toggleSidebar}
@@ -61,7 +45,6 @@ function Sidebar() {
         <img src={menuBurger} alt="Menu" className="menu-icon" />
       </button>
 
-      {/* Navigation */}
       <nav className="sidebar-nav">
         {navItems.map((item) => {
           const NavComponent = item.enabled ? Link : 'div';
