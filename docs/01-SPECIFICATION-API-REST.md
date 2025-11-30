@@ -21,6 +21,7 @@ Cette spécification définit les routes et méthodes HTTP de l'API REST pour l'
 Créer un nouveau compte utilisateur.
 
 **Corps de la requête :**
+
 ```json
 {
   "firstName": "string",
@@ -34,6 +35,7 @@ Créer un nouveau compte utilisateur.
 ```
 
 **Réponse 201 (Succès) :**
+
 ```json
 {
   "id": "number",
@@ -46,6 +48,7 @@ Créer un nouveau compte utilisateur.
 ```
 
 **Réponse 400 (Erreur) :**
+
 ```json
 {
   "error": "Email déjà utilisé"
@@ -59,6 +62,7 @@ Créer un nouveau compte utilisateur.
 Se connecter avec un compte existant.
 
 **Corps de la requête :**
+
 ```json
 {
   "email": "string",
@@ -67,6 +71,7 @@ Se connecter avec un compte existant.
 ```
 
 **Réponse 200 (Succès) :**
+
 ```json
 {
   "id": "number",
@@ -79,6 +84,7 @@ Se connecter avec un compte existant.
 ```
 
 **Réponse 401 (Non autorisé) :**
+
 ```json
 {
   "error": "Email ou mot de passe incorrect"
@@ -92,6 +98,7 @@ Se connecter avec un compte existant.
 Demander une réinitialisation de mot de passe.
 
 **Corps de la requête :**
+
 ```json
 {
   "email": "string"
@@ -99,6 +106,7 @@ Demander une réinitialisation de mot de passe.
 ```
 
 **Réponse 200 (Succès) :**
+
 ```json
 {
   "message": "Email de réinitialisation envoyé"
@@ -110,6 +118,7 @@ Demander une réinitialisation de mot de passe.
 Réinitialiser le mot de passe avec un token.
 
 **Corps de la requête :**
+
 ```json
 {
   "token": "string",
@@ -128,11 +137,13 @@ Réinitialiser le mot de passe avec un token.
 Récupérer tous les joueurs de l'équipe.
 
 **Paramètres de requête (optionnels) :**
+
 - `role`: Filtre par rôle (ex: `role=Joueur`)
 - `position`: Filtre par position (ex: `position=Milieu de terrain`)
 - `isAdmin`: Filtre par statut admin (ex: `isAdmin=true`)
 
 **Réponse 200 (Succès) :**
+
 ```json
 [
   {
@@ -158,6 +169,7 @@ Récupérer tous les joueurs de l'équipe.
 Récupérer les informations d'un joueur spécifique.
 
 **Réponse 200 (Succès) :**
+
 ```json
 {
   "id": "number",
@@ -175,6 +187,7 @@ Récupérer les informations d'un joueur spécifique.
 ```
 
 **Réponse 404 (Non trouvé) :**
+
 ```json
 {
   "error": "Joueur non trouvé"
@@ -188,11 +201,13 @@ Récupérer les informations d'un joueur spécifique.
 Créer un nouveau joueur (réservé aux admins).
 
 **Headers requis :**
+
 ```
 Authorization: Bearer <JWT_TOKEN>
 ```
 
 **Corps de la requête :**
+
 ```json
 {
   "firstName": "string",
@@ -208,6 +223,7 @@ Authorization: Bearer <JWT_TOKEN>
 ```
 
 **Réponse 201 (Succès) :**
+
 ```json
 {
   "id": "number",
@@ -224,11 +240,13 @@ Authorization: Bearer <JWT_TOKEN>
 Mettre à jour les informations d'un joueur.
 
 **Headers requis :**
+
 ```
 Authorization: Bearer <JWT_TOKEN>
 ```
 
 **Corps de la requête :** (champs optionnels, uniquement ceux à modifier)
+
 ```json
 {
   "firstName": "string",
@@ -241,6 +259,7 @@ Authorization: Bearer <JWT_TOKEN>
 ```
 
 **Réponse 200 (Succès) :**
+
 ```json
 {
   "id": "number",
@@ -250,6 +269,7 @@ Authorization: Bearer <JWT_TOKEN>
 ```
 
 **Réponse 403 (Interdit) :**
+
 ```json
 {
   "error": "Vous n'avez pas les droits pour modifier ce joueur"
@@ -263,6 +283,7 @@ Authorization: Bearer <JWT_TOKEN>
 Supprimer un joueur (réservé aux admins).
 
 **Headers requis :**
+
 ```
 Authorization: Bearer <JWT_TOKEN>
 ```
@@ -270,6 +291,7 @@ Authorization: Bearer <JWT_TOKEN>
 **Réponse 204 (Succès - No Content)**
 
 **Réponse 403 (Interdit) :**
+
 ```json
 {
   "error": "Vous n'avez pas les droits pour supprimer ce joueur"
@@ -287,6 +309,7 @@ Authorization: Bearer <JWT_TOKEN>
 Récupérer toutes les équipes.
 
 **Réponse 200 (Succès) :**
+
 ```json
 [
   {
@@ -306,6 +329,7 @@ Récupérer toutes les équipes.
 Récupérer les informations d'une équipe spécifique.
 
 **Réponse 200 (Succès) :**
+
 ```json
 {
   "id": "number",
@@ -323,11 +347,13 @@ Récupérer les informations d'une équipe spécifique.
 Mettre à jour les informations d'une équipe (réservé aux admins).
 
 **Headers requis :**
+
 ```
 Authorization: Bearer <JWT_TOKEN>
 ```
 
 **Corps de la requête :**
+
 ```json
 {
   "name": "string",
@@ -347,6 +373,7 @@ Authorization: Bearer <JWT_TOKEN>
 Récupérer tous les matchs.
 
 **Paramètres de requête (optionnels) :**
+
 - `status`: Filtre par statut (ex: `status=upcoming`, `status=finished`)
 - `date`: Filtre par date (ex: `date=2025-11-30`)
 - `location`: Filtre par lieu (ex: `location=KG5`)
@@ -354,6 +381,7 @@ Récupérer tous les matchs.
 - `createdBy`: Filtre par créateur (ex: `createdBy=1`)
 
 **Réponse 200 (Succès) :**
+
 ```json
 [
   {
@@ -383,6 +411,7 @@ Récupérer tous les matchs.
 Récupérer les détails d'un match spécifique.
 
 **Réponse 200 (Succès) :**
+
 ```json
 {
   "id": "string",
@@ -410,11 +439,13 @@ Récupérer les détails d'un match spécifique.
 Créer un nouveau match.
 
 **Headers requis :**
+
 ```
 Authorization: Bearer <JWT_TOKEN>
 ```
 
 **Corps de la requête :**
+
 ```json
 {
   "date": "string (YYYY-MM-DD)",
@@ -427,6 +458,7 @@ Authorization: Bearer <JWT_TOKEN>
 ```
 
 **Réponse 201 (Succès) :**
+
 ```json
 {
   "id": "string",
@@ -451,11 +483,13 @@ Authorization: Bearer <JWT_TOKEN>
 Mettre à jour un match (créateur ou admin uniquement).
 
 **Headers requis :**
+
 ```
 Authorization: Bearer <JWT_TOKEN>
 ```
 
 **Corps de la requête :**
+
 ```json
 {
   "date": "string",
@@ -476,6 +510,7 @@ Authorization: Bearer <JWT_TOKEN>
 Supprimer un match (créateur ou admin uniquement).
 
 **Headers requis :**
+
 ```
 Authorization: Bearer <JWT_TOKEN>
 ```
@@ -493,11 +528,13 @@ Authorization: Bearer <JWT_TOKEN>
 Récupérer toutes les présences.
 
 **Paramètres de requête (optionnels) :**
+
 - `matchId`: Filtre par match (ex: `matchId=1`)
 - `playerId`: Filtre par joueur (ex: `playerId=1`)
 - `status`: Filtre par statut (ex: `status=present`)
 
 **Réponse 200 (Succès) :**
+
 ```json
 [
   {
@@ -517,6 +554,7 @@ Récupérer toutes les présences.
 Récupérer toutes les présences pour un match spécifique.
 
 **Réponse 200 (Succès) :**
+
 ```json
 [
   {
@@ -536,11 +574,13 @@ Récupérer toutes les présences pour un match spécifique.
 Créer ou mettre à jour une présence pour un match.
 
 **Headers requis :**
+
 ```
 Authorization: Bearer <JWT_TOKEN>
 ```
 
 **Corps de la requête (POST) :**
+
 ```json
 {
   "matchId": "string | number",
@@ -550,6 +590,7 @@ Authorization: Bearer <JWT_TOKEN>
 ```
 
 **Corps de la requête (PATCH) :**
+
 ```json
 {
   "status": "string (present | absent | pending)"
@@ -557,6 +598,7 @@ Authorization: Bearer <JWT_TOKEN>
 ```
 
 **Réponse 201/200 (Succès) :**
+
 ```json
 {
   "id": "string",
@@ -574,6 +616,7 @@ Authorization: Bearer <JWT_TOKEN>
 Supprimer une présence.
 
 **Headers requis :**
+
 ```
 Authorization: Bearer <JWT_TOKEN>
 ```
@@ -591,6 +634,7 @@ Authorization: Bearer <JWT_TOKEN>
 Récupérer toutes les statistiques des joueurs.
 
 **Réponse 200 (Succès) :**
+
 ```json
 [
   {
@@ -616,6 +660,7 @@ Récupérer toutes les statistiques des joueurs.
 Récupérer les statistiques d'un joueur spécifique.
 
 **Réponse 200 (Succès) :**
+
 ```json
 {
   "id": "string",
@@ -639,11 +684,13 @@ Récupérer les statistiques d'un joueur spécifique.
 Mettre à jour les statistiques d'un joueur (admin uniquement).
 
 **Headers requis :**
+
 ```
 Authorization: Bearer <JWT_TOKEN>
 ```
 
 **Corps de la requête :**
+
 ```json
 {
   "matchesPlayed": number,
@@ -660,6 +707,12 @@ Authorization: Bearer <JWT_TOKEN>
 
 ## 7. Conversations
 
+> **⚠️ STATUT : Fonctionnalité mise en stand-by**
+>
+> Les endpoints de conversations et messages ne sont **pas inclus dans le périmètre fonctionnel principal** du projet et ont été mis en stand-by pour se concentrer sur les fonctionnalités core.
+>
+> Cette fonctionnalité pourra être réactivée dans une phase 2 après validation du MVP.
+
 ### 7.1 Liste des conversations
 
 **GET** `/conversations`
@@ -667,11 +720,13 @@ Authorization: Bearer <JWT_TOKEN>
 Récupérer toutes les conversations de l'utilisateur connecté.
 
 **Headers requis :**
+
 ```
 Authorization: Bearer <JWT_TOKEN>
 ```
 
 **Réponse 200 (Succès) :**
+
 ```json
 [
   {
@@ -696,11 +751,13 @@ Authorization: Bearer <JWT_TOKEN>
 Créer une nouvelle conversation avec un autre utilisateur.
 
 **Headers requis :**
+
 ```
 Authorization: Bearer <JWT_TOKEN>
 ```
 
 **Corps de la requête :**
+
 ```json
 {
   "userId": "string"
@@ -714,6 +771,7 @@ Authorization: Bearer <JWT_TOKEN>
 Supprimer une conversation.
 
 **Headers requis :**
+
 ```
 Authorization: Bearer <JWT_TOKEN>
 ```
@@ -724,6 +782,10 @@ Authorization: Bearer <JWT_TOKEN>
 
 ## 8. Messages
 
+> **⚠️ STATUT : Fonctionnalité mise en stand-by**
+>
+> Les endpoints de messages sont actuellement en stand-by. Voir section 7 (Conversations) pour plus de détails.
+
 ### 8.1 Liste des messages d'une conversation
 
 **GET** `/messages?conversationId=:conversationId`
@@ -731,11 +793,13 @@ Authorization: Bearer <JWT_TOKEN>
 Récupérer tous les messages d'une conversation.
 
 **Headers requis :**
+
 ```
 Authorization: Bearer <JWT_TOKEN>
 ```
 
 **Réponse 200 (Succès) :**
+
 ```json
 [
   {
@@ -755,11 +819,13 @@ Authorization: Bearer <JWT_TOKEN>
 Envoyer un message dans une conversation.
 
 **Headers requis :**
+
 ```
 Authorization: Bearer <JWT_TOKEN>
 ```
 
 **Corps de la requête :**
+
 ```json
 {
   "conversationId": "string",
@@ -768,6 +834,7 @@ Authorization: Bearer <JWT_TOKEN>
 ```
 
 **Réponse 201 (Succès) :**
+
 ```json
 {
   "id": "string",
@@ -785,6 +852,7 @@ Authorization: Bearer <JWT_TOKEN>
 Supprimer un message (expéditeur uniquement).
 
 **Headers requis :**
+
 ```
 Authorization: Bearer <JWT_TOKEN>
 ```
@@ -795,17 +863,17 @@ Authorization: Bearer <JWT_TOKEN>
 
 ## 9. Codes de statut HTTP
 
-| Code | Signification | Usage |
-|------|---------------|-------|
-| 200 | OK | Requête réussie |
-| 201 | Created | Ressource créée avec succès |
-| 204 | No Content | Requête réussie, pas de contenu à retourner |
-| 400 | Bad Request | Requête invalide (données manquantes ou mal formatées) |
-| 401 | Unauthorized | Authentification requise ou échouée |
-| 403 | Forbidden | Accès refusé (permissions insuffisantes) |
-| 404 | Not Found | Ressource non trouvée |
-| 409 | Conflict | Conflit (ex: email déjà utilisé) |
-| 500 | Internal Server Error | Erreur serveur |
+| Code | Signification         | Usage                                                  |
+| ---- | --------------------- | ------------------------------------------------------ |
+| 200  | OK                    | Requête réussie                                        |
+| 201  | Created               | Ressource créée avec succès                            |
+| 204  | No Content            | Requête réussie, pas de contenu à retourner            |
+| 400  | Bad Request           | Requête invalide (données manquantes ou mal formatées) |
+| 401  | Unauthorized          | Authentification requise ou échouée                    |
+| 403  | Forbidden             | Accès refusé (permissions insuffisantes)               |
+| 404  | Not Found             | Ressource non trouvée                                  |
+| 409  | Conflict              | Conflit (ex: email déjà utilisé)                       |
+| 500  | Internal Server Error | Erreur serveur                                         |
 
 ---
 
@@ -824,6 +892,7 @@ Toutes les erreurs suivent le format suivant :
 ### Exemples d'erreurs
 
 **Validation échouée (400) :**
+
 ```json
 {
   "error": "Données de validation invalides",
@@ -836,6 +905,7 @@ Toutes les erreurs suivent le format suivant :
 ```
 
 **Ressource non trouvée (404) :**
+
 ```json
 {
   "error": "Match non trouvé",
@@ -844,6 +914,7 @@ Toutes les erreurs suivent le format suivant :
 ```
 
 **Accès refusé (403) :**
+
 ```json
 {
   "error": "Vous n'avez pas les droits pour effectuer cette action",
@@ -864,6 +935,7 @@ Authorization: Bearer <JWT_TOKEN>
 Le token JWT doit être obtenu via les endpoints `/auth/login` ou `/auth/register`.
 
 Le token contient :
+
 - `id` : ID de l'utilisateur
 - `email` : Email de l'utilisateur
 - `isAdmin` : Statut administrateur
@@ -880,6 +952,7 @@ Pour les listes longues, la pagination sera implémentée avec les paramètres s
 - `limit` : Nombre d'éléments par page (défaut: 20)
 
 **Réponse avec pagination :**
+
 ```json
 {
   "data": [...],
@@ -903,15 +976,18 @@ Pour les listes longues, la pagination sera implémentée avec les paramètres s
 Uploader une photo de profil pour un utilisateur.
 
 **Headers requis :**
+
 ```
 Authorization: Bearer <JWT_TOKEN>
 Content-Type: multipart/form-data
 ```
 
 **Corps de la requête :**
+
 - `file`: Fichier image (JPEG, PNG, max 5MB)
 
 **Réponse 200 (Succès) :**
+
 ```json
 {
   "url": "https://api.teamup.com/uploads/avatars/user123.jpg"
@@ -925,16 +1001,19 @@ Content-Type: multipart/form-data
 Uploader un logo pour une équipe.
 
 **Headers requis :**
+
 ```
 Authorization: Bearer <JWT_TOKEN>
 Content-Type: multipart/form-data
 ```
 
 **Corps de la requête :**
+
 - `file`: Fichier image (JPEG, PNG, max 5MB)
 - `teamId`: ID de l'équipe
 
 **Réponse 200 (Succès) :**
+
 ```json
 {
   "url": "https://api.teamup.com/uploads/logos/team1.png"
@@ -950,5 +1029,3 @@ Content-Type: multipart/form-data
 - **Sécurité** : Implémenter la validation des données, la sanitization, et la protection CSRF
 - **Performance** : Mettre en cache les requêtes fréquentes, implémenter la pagination
 - **Tests** : Créer des tests unitaires et d'intégration pour chaque endpoint
-
-
