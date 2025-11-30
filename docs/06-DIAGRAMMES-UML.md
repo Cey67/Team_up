@@ -33,7 +33,6 @@ Ce document contient les diagrammes UML nécessaires à la compréhension de l'a
           ├──> Gérer ses présences
           ├──> Consulter les statistiques
           ├──> Voir l'effectif
-          ├──> Envoyer un message
           │
 ┌─────────▼──────────┐
 │   Administrateur   │
@@ -99,13 +98,19 @@ Ce document contient les diagrammes UML nécessaires à la compréhension de l'a
    - Consulter les statistiques de l'équipe
    - Voir les classements
 
-7. **Messagerie**
+7. **Messagerie** ⚠️ _En stand-by_
 
-   - Voir la liste des conversations
-   - Créer une conversation
-   - Envoyer un message
-   - Recevoir des messages
-   - Marquer les messages comme lus
+   > **⚠️ STATUT : Fonctionnalité mise en stand-by**
+   >
+   > La messagerie n'est **pas incluse dans le périmètre fonctionnel principal** du projet et a été mise en stand-by pour se concentrer sur les fonctionnalités core.
+   >
+   > Cette fonctionnalité pourra être réactivée dans une phase 2 après validation du MVP.
+
+   - Voir la liste des conversations _(en stand-by)_
+   - Créer une conversation _(en stand-by)_
+   - Envoyer un message _(en stand-by)_
+   - Recevoir des messages _(en stand-by)_
+   - Marquer les messages comme lus _(en stand-by)_
 
 8. **Paramètres**
    - Modifier les paramètres d'équipe (Admin)
@@ -126,7 +131,7 @@ graph TB
     Player --> UC7[Gérer ses présences]
     Player --> UC8[Consulter les statistiques]
     Player --> UC9[Voir l'effectif]
-    Player --> UC10[Envoyer un message]
+    %% UC10[Envoyer un message] - En stand-by
 
     Admin[Administrateur] --> UC11[Gérer les joueurs]
     Admin --> UC12[Supprimer un match]
