@@ -149,9 +149,7 @@ Toute la documentation d'analyse et de spécification est disponible dans le dos
 
 ## 📦 Lien du Répertoire Git
 
-**Répertoire public GitHub :** [À compléter avec le lien de votre dépôt Git]
-
-> ⚠️ **Note :** N'oubliez pas de remplacer cette section par le lien réel de votre dépôt Git public avant le rendu.
+**Répertoire public GitHub :** https://github.com/Cey67/Team_up/tree/dev
 
 ## Installation
 
