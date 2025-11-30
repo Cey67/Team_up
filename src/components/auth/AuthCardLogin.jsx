@@ -8,8 +8,6 @@ function AuthCardLogin() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Logique frontend uniquement - pas de validation ni d'appel API
-    // Redirection vers le dashboard après connexion
     navigate('/dashboard');
   };
 
@@ -19,7 +17,6 @@ function AuthCardLogin() {
         <h1 className="auth-title">Se connecter</h1>
         
         <form onSubmit={handleSubmit} className="auth-form" noValidate>
-          {/* Champ Email */}
           <div className="auth-input-group">
             <label htmlFor="email" className="auth-label">
               E-mail
@@ -37,7 +34,6 @@ function AuthCardLogin() {
             </div>
           </div>
 
-          {/* Champ Mot de passe */}
           <div className="auth-input-group">
             <label htmlFor="password" className="auth-label">
               Mot de passe
@@ -55,13 +51,11 @@ function AuthCardLogin() {
             </div>
           </div>
 
-          {/* Bouton de soumission */}
           <button type="submit" className="auth-submit-button">
             Se connecter
           </button>
         </form>
 
-        {/* Liens de navigation */}
         <div className="auth-links">
           <Link to="/register" className="auth-link">
             Créer un compte

@@ -3,9 +3,6 @@ import { SidebarProvider, useSidebar } from './SidebarContext';
 import Sidebar from './Sidebar';
 import './Layout.css';
 
-/**
- * Composant interne qui utilise le contexte de la sidebar
- */
 function LayoutContent() {
   const { isExpanded } = useSidebar();
   
@@ -19,10 +16,6 @@ function LayoutContent() {
   );
 }
 
-/**
- * Composant Layout - Wrapper pour les pages avec sidebar
- * Inclut la sidebar verticale et le contenu principal
- */
 function Layout() {
   return (
     <SidebarProvider>

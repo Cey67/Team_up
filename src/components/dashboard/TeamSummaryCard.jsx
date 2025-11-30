@@ -1,12 +1,7 @@
 import './Card.css';
 import logo2 from '../../assets/logo2.svg';
 
-/**
- * Card affichant un résumé de l'équipe
- * Affiche le nom de l'équipe, le logo et le nombre de joueurs dans l'effectif
- */
 function TeamSummaryCard() {
-  // Données mockées - à remplacer par des données réelles plus tard
   const teamData = {
     name: 'Nom de l\'équipe',
     rosterCount: 0

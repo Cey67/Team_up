@@ -2,13 +2,6 @@ import { useState } from 'react';
 import './MatchFilters.css';
 import selectionListeIcon from '../../assets/selection-liste.png';
 
-/**
- * Composant MatchFilters - Permet de filtrer les matchs
- * Expose des callbacks pour modifier l'état dans la page parente
- * 
- * @param {Object} filters - État actuel des filtres
- * @param {Function} onFilterChange - Callback appelé lors du changement de filtre (newFilters)
- */
 function MatchFilters({ filters = {}, onFilterChange }) {
   const [localFilters, setLocalFilters] = useState({
     date: filters.date || '',
@@ -17,11 +10,6 @@ function MatchFilters({ filters = {}, onFilterChange }) {
     status: filters.status || '',
   });
 
-  /**
-   * Gère le changement d'un filtre
-   * @param {string} filterName - Nom du filtre modifié
-   * @param {string} value - Nouvelle valeur du filtre
-   */
   const handleFilterChange = (filterName, value) => {
     const newFilters = {
       ...localFilters,
@@ -33,9 +21,6 @@ function MatchFilters({ filters = {}, onFilterChange }) {
     }
   };
 
-  /**
-   * Réinitialise tous les filtres
-   */
   const handleReset = () => {
     const emptyFilters = {
       date: '',
@@ -67,7 +52,6 @@ function MatchFilters({ filters = {}, onFilterChange }) {
       </div>
 
       <div className="match-filters-content">
-        {/* Filtre par date */}
         <div className="match-filter-group">
           <label htmlFor="filter-date" className="match-filter-label">
             Date
@@ -81,7 +65,6 @@ function MatchFilters({ filters = {}, onFilterChange }) {
           />
         </div>
 
-        {/* Filtre par lieu */}
         <div className="match-filter-group">
           <label htmlFor="filter-location" className="match-filter-label">
             Lieu
@@ -101,7 +84,6 @@ function MatchFilters({ filters = {}, onFilterChange }) {
           </div>
         </div>
 
-        {/* Filtre par statut */}
         <div className="match-filter-group">
           <label htmlFor="filter-status" className="match-filter-label">
             Statut

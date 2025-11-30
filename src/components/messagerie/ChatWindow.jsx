@@ -1,20 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
 import './ChatWindow.css';
 
-/**
- * Formate l'heure d'un message pour l'affichage dans la conversation
- * @param {string} timestamp - Timestamp ISO
- * @returns {string} Heure formatée (ex: "14:30")
- */
 const formatMessageTime = (timestamp) => {
   if (!timestamp) return '';
   const date = new Date(timestamp);
   return date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
 };
 
-/**
- * Composant Message - Affiche un message individuel dans la conversation
- */
 function Message({ message, isOwn, isGroup }) {
   return (
     <div className={`chat-message ${isOwn ? 'chat-message-own' : 'chat-message-other'}`}>
@@ -29,14 +21,6 @@ function Message({ message, isOwn, isGroup }) {
   );
 }
 
-/**
- * Composant ChatWindow - Fenêtre de chat principale
- * Affiche les messages et permet d'envoyer de nouveaux messages
- * @param {Object} selectedConversation - Conversation actuellement sélectionnée
- * @param {Array} messages - Liste des messages de la conversation
- * @param {Function} onSendMessage - Fonction appelée pour envoyer un message
- * @param {string} currentUserId - ID de l'utilisateur actuel
- */
 function ChatWindow({ 
   selectedConversation, 
   messages = [],
@@ -48,25 +32,16 @@ function ChatWindow({
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
 
-  /**
-   * Fait défiler vers le bas quand de nouveaux messages arrivent
-   */
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  /**
-   * Focus sur l'input quand une conversation est sélectionnée
-   */
   useEffect(() => {
     if (selectedConversation) {
       inputRef.current?.focus();
     }
   }, [selectedConversation]);
 
-  /**
-   * Gère l'envoi d'un message
-   */
   const handleSendMessage = async (e) => {
     e.preventDefault();
     
@@ -82,7 +57,6 @@ function ChatWindow({
       await onSendMessage(selectedConversation.id, text);
     } catch (error) {
       console.error('Erreur lors de l\'envoi du message:', error);
-      // Remettre le texte en cas d'erreur
       setMessageText(text);
     } finally {
       setSending(false);
@@ -90,10 +64,6 @@ function ChatWindow({
     }
   };
 
-  /**
-   * Gère la touche Entrée (envoie le message)
-   * Shift+Entrée pour un saut de ligne
-   */
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -105,7 +75,6 @@ function ChatWindow({
     <div className="chat-window-panel">
       {selectedConversation ? (
         <>
-          {/* En-tête de la conversation */}
           <div className="chat-window-header">
             <div className="chat-window-header-info">
               <h2 className="chat-window-header-name">
@@ -126,7 +95,6 @@ function ChatWindow({
             )}
           </div>
 
-          {/* Zone des messages */}
           <div className="chat-window-messages">
             {messages.length === 0 ? (
               <div className="chat-window-empty">
@@ -152,7 +120,6 @@ function ChatWindow({
             )}
           </div>
 
-          {/* Zone de saisie */}
           <form className="chat-window-input-area" onSubmit={handleSendMessage}>
             <textarea
               ref={inputRef}

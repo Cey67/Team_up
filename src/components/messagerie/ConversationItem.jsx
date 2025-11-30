@@ -1,25 +1,11 @@
 import './ConversationItem.css';
 
-/**
- * Génère les initiales à partir du prénom et du nom
- * @param {string} firstName - Prénom
- * @param {string} lastName - Nom
- * @returns {string} Initiales (ex: "CS" pour "Ceyhun SAPMAZ")
- */
 const getInitials = (firstName, lastName) => {
   const firstInitial = firstName ? firstName.charAt(0).toUpperCase() : '';
   const lastInitial = lastName ? lastName.charAt(0).toUpperCase() : '';
   return firstInitial + lastInitial;
 };
 
-/**
- * Composant ConversationItem - Affiche un élément de conversation dans la liste
- * Design uniforme avec possibilité de suppression
- * @param {Object} conversation - Objet conversation contenant les informations
- * @param {boolean} isActive - Indique si la conversation est sélectionnée
- * @param {Function} onClick - Fonction appelée lors du clic sur la conversation
- * @param {Function} onDelete - Fonction appelée lors de la suppression de la conversation
- */
 function ConversationItem({ conversation, isActive, onClick, onDelete }) {
   const { 
     id, 
@@ -35,10 +21,6 @@ function ConversationItem({ conversation, isActive, onClick, onDelete }) {
     position
   } = conversation;
 
-  /**
-   * Gère le clic sur le bouton de suppression
-   * Empêche la propagation pour éviter de sélectionner la conversation
-   */
   const handleDelete = (e) => {
     e.stopPropagation();
     if (window.confirm(`Êtes-vous sûr de vouloir supprimer la conversation avec ${isGroup ? name : `${firstName} ${lastName}`} ?`)) {
@@ -94,7 +76,6 @@ function ConversationItem({ conversation, isActive, onClick, onDelete }) {
         </div>
       </div>
       
-      {/* Indicateur de notification pour les messages non lus */}
       {unread > 0 && (
         <div 
           className="conversation-item-notification-dot" 
@@ -103,7 +84,6 @@ function ConversationItem({ conversation, isActive, onClick, onDelete }) {
         />
       )}
       
-      {/* Bouton de suppression */}
       <button
         className="conversation-item-delete-btn"
         onClick={handleDelete}

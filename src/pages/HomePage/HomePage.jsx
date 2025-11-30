@@ -2,14 +2,9 @@ import { Link } from 'react-router-dom';
 import './HomePage.css';
 import logo2 from '../../assets/logo2.svg';
 
-/**
- * Page d'accueil de l'application Team Up
- * Présente l'application et ses avantages avec des boutons d'action centrés
- */
 function HomePage() {
   return (
     <div className="home-container">
-      {/* Logo en haut à gauche */}
       <div className="home-logo-container">
         <img src={logo2} alt="Team Up Logo" className="home-logo" />
       </div>
@@ -19,12 +14,10 @@ function HomePage() {
           Team Up
         </h1>
         
-        {/* Sous-titre */}
         <p className="home-subtitle">
           Organisez vos matchs de football entre amis, collègues ou membres de votre communauté
         </p>
 
-        {/* Boutons d'action centrés */}
         <div className="home-actions">
           <Link to="/register" className="home-btn home-btn-primary">
             S'inscrire
@@ -34,7 +27,6 @@ function HomePage() {
           </Link>
         </div>
 
-        {/* Section des avantages */}
         <section className="home-benefits">
           <h2 className="home-benefits-title">Ce que Team Up peut vous apporter</h2>
           

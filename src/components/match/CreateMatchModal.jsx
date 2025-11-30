@@ -1,14 +1,6 @@
 import { useState } from 'react';
 import './CreateMatchModal.css';
 
-/**
- * Composant CreateMatchModal - Modale pour créer un nouveau match
- * Formulaire complet avec validation et interaction avec l'API
- * 
- * @param {boolean} isOpen - Indique si la modale est ouverte
- * @param {Function} onClose - Fonction appelée pour fermer la modale
- * @param {Function} onCreateMatch - Fonction appelée lors de la création (matchData)
- */
 function CreateMatchModal({ isOpen, onClose, onCreateMatch }) {
   const [formData, setFormData] = useState({
     date: '',
@@ -21,17 +13,11 @@ function CreateMatchModal({ isOpen, onClose, onCreateMatch }) {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  /**
-   * Gère le changement d'un champ du formulaire
-   * @param {string} fieldName - Nom du champ modifié
-   * @param {string} value - Nouvelle valeur
-   */
   const handleChange = (fieldName, value) => {
     setFormData(prev => ({
       ...prev,
       [fieldName]: value,
     }));
-    // Efface l'erreur du champ modifié
     if (errors[fieldName]) {
       setErrors(prev => {
         const newErrors = { ...prev };
@@ -41,10 +27,6 @@ function CreateMatchModal({ isOpen, onClose, onCreateMatch }) {
     }
   };
 
-  /**
-   * Valide le formulaire
-   * @returns {boolean} - True si le formulaire est valide
-   */
   const validate = () => {
     const newErrors = {};
 
@@ -66,16 +48,10 @@ function CreateMatchModal({ isOpen, onClose, onCreateMatch }) {
       newErrors.location = 'Le lieu est requis';
     }
 
-    // Type et maxPlayers sont maintenant fixes (5v5 = 10 joueurs), pas besoin de validation
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  /**
-   * Gère la soumission du formulaire
-   * @param {Event} e - Événement de soumission
-   */
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -88,21 +64,19 @@ function CreateMatchModal({ isOpen, onClose, onCreateMatch }) {
     try {
       const matchData = {
         ...formData,
-        type: '5v5', // Toujours 5v5
-        maxPlayers: 10, // Fixé à 10 pour 5v5
-        status: 'upcoming', // Statut 'upcoming' pour qu'il apparaisse dans la page présences
+        type: '5v5',
+        maxPlayers: 10,
+        status: 'upcoming',
         playersCount: 0,
-        createdBy: 1, // TODO: Récupérer depuis l'authentification
-        teamId: 1, // TODO: Récupérer depuis l'utilisateur
+        createdBy: 1,
+        teamId: 1,
         createdAt: new Date().toISOString(),
       };
 
       if (onCreateMatch) {
         await onCreateMatch(matchData);
-        // Le parent (MatchesPage) gère la fermeture du modal après le rechargement
       }
 
-      // Réinitialise le formulaire
       setFormData({
         date: '',
         time: '',
@@ -119,9 +93,6 @@ function CreateMatchModal({ isOpen, onClose, onCreateMatch }) {
     }
   };
 
-  /**
-   * Gère la fermeture de la modale
-   */
   const handleClose = () => {
     if (!isSubmitting) {
       setFormData({
@@ -154,7 +125,6 @@ function CreateMatchModal({ isOpen, onClose, onCreateMatch }) {
         </div>
 
         <form className="create-match-modal-form" onSubmit={handleSubmit}>
-          {/* Date */}
           <div className="create-match-form-group">
             <label htmlFor="create-date" className="create-match-label">
               Date <span className="required">*</span>
@@ -172,7 +142,6 @@ function CreateMatchModal({ isOpen, onClose, onCreateMatch }) {
             )}
           </div>
 
-          {/* Heure */}
           <div className="create-match-form-group">
             <label htmlFor="create-time" className="create-match-label">
               Heure <span className="required">*</span>
@@ -190,7 +159,6 @@ function CreateMatchModal({ isOpen, onClose, onCreateMatch }) {
             )}
           </div>
 
-          {/* Lieu */}
           <div className="create-match-form-group">
             <label htmlFor="create-location" className="create-match-label">
               Lieu <span className="required">*</span>
@@ -211,7 +179,6 @@ function CreateMatchModal({ isOpen, onClose, onCreateMatch }) {
             )}
           </div>
 
-          {/* Type - Toujours 5v5 */}
           <div className="create-match-form-group">
             <label htmlFor="create-type" className="create-match-label">
               Type
@@ -227,7 +194,6 @@ function CreateMatchModal({ isOpen, onClose, onCreateMatch }) {
             <span className="create-match-hint">Format standard : 5 contre 5</span>
           </div>
 
-          {/* Nombre maximum de joueurs - Fixé à 10 pour 5v5 */}
           <div className="create-match-form-group">
             <label htmlFor="create-max-players" className="create-match-label">
               Nombre maximum de joueurs
@@ -243,13 +209,10 @@ function CreateMatchModal({ isOpen, onClose, onCreateMatch }) {
             <span className="create-match-hint">5 joueurs par équipe</span>
           </div>
 
-
-          {/* Erreur générale */}
           {errors.submit && (
             <div className="create-match-error-message">{errors.submit}</div>
           )}
 
-          {/* Boutons */}
           <div className="create-match-modal-actions">
             <button
               type="button"

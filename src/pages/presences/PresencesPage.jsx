@@ -5,11 +5,6 @@ import AttendanceList from '../../components/presences/AttendanceList';
 import AttendanceStats from '../../components/presences/AttendanceStats';
 import { matchesService, playersService, attendancesService } from '../../services/api';
 
-/**
- * Page de gestion des présences
- * Affiche les matchs à venir avec la liste des joueurs et leur statut de présence
- * Permet de modifier les présences pour chaque match
- */
 function PresencesPage() {
   const [matches, setMatches] = useState([]);
   const [players, setPlayers] = useState([]);
@@ -17,25 +12,17 @@ function PresencesPage() {
   const [expandedMatchId, setExpandedMatchId] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [updatingAttendance, setUpdatingAttendance] = useState(null); // { matchId, playerId }
+  const [updatingAttendance, setUpdatingAttendance] = useState(null);
 
-  /**
-   * Charge toutes les données nécessaires au montage du composant
-   * Récupère les matchs, les joueurs et les présences
-   */
   useEffect(() => {
     const loadData = async () => {
       try {
         setLoading(true);
         setError(null);
 
-        // Charge tous les matchs
         const allMatches = await matchesService.getAll();
-        
-        // Charge toutes les présences pour recalculer le statut dynamiquement
         const allAttendances = await attendancesService.getAll();
         
-        // Recalcule le statut pour chaque match basé sur les présences réelles
         const enrichedMatches = allMatches.map(match => {
           const matchAttendances = allAttendances.filter(att => att.matchId == match.id);
           const playersCount = matchAttendances.filter(att => att.status === 'present').length;
@@ -60,10 +47,8 @@ function PresencesPage() {
           };
         });
         
-        // Filtre uniquement les matchs à venir (non terminés)
         const upcomingMatches = enrichedMatches.filter(match => match.status !== 'finished');
         
-        // Trie les matchs par date (plus proche en premier)
         upcomingMatches.sort((a, b) => {
           const dateA = new Date(`${a.date}T${a.time}`);
           const dateB = new Date(`${b.date}T${b.time}`);
@@ -72,14 +57,10 @@ function PresencesPage() {
 
         setMatches(upcomingMatches);
 
-        // Charge tous les joueurs
         const allPlayers = await playersService.getAll();
         setPlayers(allPlayers);
-
-        // Utilise les présences déjà chargées pour le calcul du statut
         setAttendances(allAttendances);
 
-        // Développe automatiquement le premier match s'il existe
         if (upcomingMatches.length > 0) {
           setExpandedMatchId(upcomingMatches[0].id);
         }
@@ -97,22 +78,14 @@ function PresencesPage() {
     loadData();
   }, []);
 
-  /**
-   * Recharge les données quand on revient sur la page
-   * Écoute les changements de focus de la fenêtre pour synchroniser les présences
-   */
   useEffect(() => {
     const handleFocus = () => {
       if (!loading) {
         const reloadData = async () => {
           try {
-            // Charge tous les matchs
             const allMatches = await matchesService.getAll();
-            
-            // Charge toutes les présences pour recalculer le statut dynamiquement
             const allAttendances = await attendancesService.getAll();
             
-            // Recalcule le statut pour chaque match basé sur les présences réelles
             const enrichedMatches = allMatches.map(match => {
               const matchAttendances = allAttendances.filter(att => att.matchId == match.id);
               const playersCount = matchAttendances.filter(att => att.status === 'present').length;
@@ -137,10 +110,8 @@ function PresencesPage() {
               };
             });
             
-            // Filtre uniquement les matchs à venir (non terminés)
             const upcomingMatches = enrichedMatches.filter(match => match.status !== 'finished');
             
-            // Trie les matchs par date (plus proche en premier)
             upcomingMatches.sort((a, b) => {
               const dateA = new Date(`${a.date}T${a.time}`);
               const dateB = new Date(`${b.date}T${b.time}`);
@@ -148,8 +119,6 @@ function PresencesPage() {
             });
 
             setMatches(upcomingMatches);
-            
-            // Met à jour aussi les présences pour être synchronisé
             setAttendances(allAttendances);
           } catch (err) {
             console.error('Erreur lors du rechargement:', err);
@@ -164,35 +133,20 @@ function PresencesPage() {
     return () => window.removeEventListener('focus', handleFocus);
   }, [loading]);
 
-  /**
-   * Gère le développement/réduction d'un match
-   * @param {number} matchId - ID du match
-   */
   const handleToggleMatch = (matchId) => {
     setExpandedMatchId(expandedMatchId === matchId ? null : matchId);
   };
 
-  /**
-   * Gère le changement de statut de présence d'un joueur
-   * Met à jour les présences localement et via l'API
-   * 
-   * @param {number} matchId - ID du match
-   * @param {number} playerId - ID du joueur
-   * @param {string} newStatus - Nouveau statut ('present', 'absent', 'pending')
-   */
   const handleStatusChange = async (matchId, playerId, newStatus) => {
-    // Indique qu'une mise à jour est en cours
     setUpdatingAttendance({ matchId, playerId });
     
     try {
-      // Met à jour via l'API et récupère la présence mise à jour/créée
       const updatedAttendance = await attendancesService.upsert({
         matchId,
         playerId,
         status: newStatus,
       });
 
-      // Met à jour l'état local avec les données retournées par l'API
       setAttendances(prevAttendances => {
         const existingIndex = prevAttendances.findIndex(
           att => att.matchId === matchId && att.playerId === playerId
@@ -200,18 +154,15 @@ function PresencesPage() {
 
         let updatedAttendances;
         if (existingIndex >= 0) {
-          // Met à jour la présence existante avec les données de l'API
           updatedAttendances = [...prevAttendances];
           updatedAttendances[existingIndex] = updatedAttendance;
         } else {
-          // Ajoute la nouvelle présence retournée par l'API
           updatedAttendances = [...prevAttendances, updatedAttendance];
         }
         
-        // Recalcule le statut du match mis à jour basé sur les nouvelles présences
         const matchAttendances = updatedAttendances.filter(att => att.matchId === matchId);
         const playersCount = matchAttendances.filter(att => att.status === 'present').length;
-        const maxPlayers = 10; // Fixé à 10 pour les matchs 5v5
+        const maxPlayers = 10;
         
         setMatches(prevMatches => {
           return prevMatches.map(m => {
@@ -241,30 +192,21 @@ function PresencesPage() {
         return updatedAttendances;
       });
 
-      // Efface l'erreur si la mise à jour réussit
       setError(null);
     } catch (err) {
       console.error('Erreur lors de la mise à jour de la présence:', err);
       setError('Impossible de mettre à jour la présence. Vérifiez que json-server est démarré et réessayez.');
     } finally {
-      // Retire l'indicateur de chargement
       setUpdatingAttendance(null);
     }
   };
 
-  /**
-   * Calcule les statistiques des présences pour un match
-   * Les joueurs sans présence enregistrée sont comptés comme "pending"
-   * @param {number} matchId - ID du match
-   * @returns {Object} - Statistiques { presentCount, absentCount, pendingCount, totalCount }
-   */
   const getMatchStats = (matchId) => {
     const matchAttendances = attendances.filter(att => att.matchId === matchId);
     const presentCount = matchAttendances.filter(att => att.status === 'present').length;
     const absentCount = matchAttendances.filter(att => att.status === 'absent').length;
     const recordedPendingCount = matchAttendances.filter(att => att.status === 'pending').length;
     
-    // Les joueurs sans présence enregistrée sont considérés comme "pending"
     const playersWithoutAttendance = players.length - matchAttendances.length;
     const pendingCount = recordedPendingCount + playersWithoutAttendance;
     
@@ -278,17 +220,10 @@ function PresencesPage() {
     };
   };
 
-  /**
-   * Obtient les présences pour un match spécifique
-   * @param {number} matchId - ID du match
-   * @returns {Array} - Liste des présences pour ce match
-   */
   const getMatchAttendances = (matchId) => {
     return attendances.filter(att => att.matchId === matchId);
   };
 
-  // Vérifie si l'utilisateur peut modifier les présences
-  // Pour l'instant, on autorise toujours (sera géré par les rôles plus tard)
   const canEdit = true;
 
   return (
@@ -296,14 +231,12 @@ function PresencesPage() {
       <div className="presences-page-content">
         <h1 className="presences-page-title">Présences</h1>
 
-        {/* Affichage des erreurs */}
         {error && (
           <div className="presences-error">
             {error}
           </div>
         )}
 
-        {/* Affichage du chargement */}
         {loading ? (
           <div className="presences-loading">
             Chargement des données...

@@ -3,14 +3,6 @@ import './ConversationList.css';
 import ConversationItem from './ConversationItem';
 import courrierIcon from '../../assets/courrier.png';
 
-/**
- * Composant ConversationList - Liste des conversations avec barre de recherche intégrée
- * @param {Array} conversations - Liste des conversations
- * @param {Object} selectedConversation - Conversation actuellement sélectionnée
- * @param {Function} onSelectConversation - Fonction appelée lors de la sélection d'une conversation
- * @param {Function} onNewMessage - Fonction appelée lors du clic sur "Nouveau message"
- * @param {Function} onDeleteConversation - Fonction appelée lors de la suppression d'une conversation
- */
 function ConversationList({ 
   conversations, 
   selectedConversation, 
@@ -20,9 +12,6 @@ function ConversationList({
 }) {
   const [searchQuery, setSearchQuery] = useState('');
 
-  /**
-   * Filtre les conversations en fonction de la recherche
-   */
   const filteredConversations = conversations.filter((conv) => {
     if (!searchQuery.trim()) {
       return true;

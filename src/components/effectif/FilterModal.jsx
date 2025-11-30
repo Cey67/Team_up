@@ -1,22 +1,12 @@
 import { useState, useEffect } from 'react';
 import './FilterModal.css';
 
-/**
- * Composant modal pour filtrer les joueurs
- * Permet de filtrer par rôle, statut admin, et autres critères
- * 
- * @param {boolean} isOpen - État d'ouverture du modal
- * @param {function} onClose - Callback appelé pour fermer le modal
- * @param {object} currentFilters - Filtres actuellement appliqués
- * @param {function} onApplyFilters - Callback appelé avec les nouveaux filtres
- */
 function FilterModal({ isOpen, onClose, currentFilters = {}, onApplyFilters }) {
   const [filters, setFilters] = useState({
     role: currentFilters.role || 'all',
     ...currentFilters
   });
 
-  // Met à jour les filtres locaux quand currentFilters change
   useEffect(() => {
     setFilters({
       role: currentFilters.role || 'all',
@@ -24,9 +14,6 @@ function FilterModal({ isOpen, onClose, currentFilters = {}, onApplyFilters }) {
     });
   }, [currentFilters]);
 
-  /**
-   * Gère le changement d'un filtre
-   */
   const handleFilterChange = (filterName, value) => {
     setFilters(prev => ({
       ...prev,
@@ -34,9 +21,6 @@ function FilterModal({ isOpen, onClose, currentFilters = {}, onApplyFilters }) {
     }));
   };
 
-  /**
-   * Applique les filtres et ferme le modal
-   */
   const handleApply = () => {
     if (onApplyFilters) {
       onApplyFilters(filters);
@@ -46,9 +30,6 @@ function FilterModal({ isOpen, onClose, currentFilters = {}, onApplyFilters }) {
     }
   };
 
-  /**
-   * Réinitialise tous les filtres
-   */
   const handleReset = () => {
     const resetFilters = {
       role: 'all'
@@ -89,7 +70,6 @@ function FilterModal({ isOpen, onClose, currentFilters = {}, onApplyFilters }) {
         </div>
 
         <div className="filter-modal-body">
-          {/* Filtre par rôle */}
           <div className="filter-group">
             <label className="filter-label">Rôle</label>
             <div className="filter-options">

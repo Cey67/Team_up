@@ -1,12 +1,7 @@
 import './Card.css';
 
-/**
- * Card affichant le dernier match joué
- * Affiche les informations du match le plus récent
- */
 function LastMatchCard() {
-  // Données mockées - à remplacer par des données réelles plus tard
-  const lastMatch = null; // null si aucun match joué
+  const lastMatch = null;
 
   return (
     <div className="card match-card last-match-card">

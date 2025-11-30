@@ -2,13 +2,7 @@ import { useState } from 'react';
 import './ParametresPage.css';
 import TeamLogoUpload from '../../components/parametres/TeamLogoUpload';
 
-/**
- * Page des paramètres de l'équipe
- * Design avec section gauche (logo + navigation) et section droite (formulaire éditable)
- * Structure similaire à la page profil mais pour les paramètres de l'équipe
- */
 function ParametresPage() {
-  // Données mockées - à remplacer par des données réelles depuis l'API plus tard
   const [teamData, setTeamData] = useState({
     id: '1',
     name: 'FC STRASBOURG',
@@ -20,10 +14,6 @@ function ParametresPage() {
 
   const [activeTab, setActiveTab] = useState('informations');
 
-  /**
-   * Gère la mise à jour du logo d'équipe après upload
-   * @param {string} logoUrl - URL du logo uploadé
-   */
   const handleLogoUpdate = (logoUrl) => {
     setTeamData(prev => ({
       ...prev,
@@ -31,11 +21,6 @@ function ParametresPage() {
     }));
   };
 
-  /**
-   * Gère la mise à jour des champs du formulaire
-   * @param {string} field - Nom du champ à mettre à jour
-   * @param {string} value - Nouvelle valeur
-   */
   const handleFieldChange = (field, value) => {
     setTeamData(prev => ({
       ...prev,
@@ -43,31 +28,19 @@ function ParametresPage() {
     }));
   };
 
-  /**
-   * Gère l'action "Supprimer l'équipe"
-   */
   const handleDeleteTeam = () => {
     if (window.confirm('Êtes-vous sûr de vouloir supprimer l\'équipe ? Cette action est irréversible.')) {
-      // TODO: Implémenter la logique de suppression de l'équipe
       console.log('Supprimer l\'équipe');
     }
   };
 
-  /**
-   * Gère l'enregistrement des données de l'équipe
-   * Valide les champs requis avant de sauvegarder
-   */
   const handleSave = () => {
-    // Validation des champs requis
     if (!teamData.name.trim()) {
       alert('Veuillez remplir le nom de l\'équipe');
       return;
     }
 
-    // TODO: Envoyer les données au serveur via l'API
     console.log('Données à enregistrer:', teamData);
-    
-    // Simulation d'un enregistrement réussi
     alert('Paramètres de l\'équipe enregistrés avec succès !');
   };
 
@@ -76,10 +49,8 @@ function ParametresPage() {
       <div className="parametres-content">
         <h1 className="parametres-title">Paramètres</h1>
 
-        {/* Card principale avec deux sections */}
         <div className="parametres-card">
           <div className="parametres-card-layout">
-            {/* Section gauche : Logo + Navigation */}
             <div className="parametres-left-section">
               <div className="parametres-logo-wrapper">
                 <TeamLogoUpload 
@@ -92,7 +63,6 @@ function ParametresPage() {
                 </h2>
               </div>
 
-              {/* Boutons de navigation */}
               <div className="parametres-nav-buttons">
                 <button 
                   className={`parametres-nav-btn ${activeTab === 'informations' ? 'parametres-nav-btn-active' : ''}`}
@@ -109,11 +79,9 @@ function ParametresPage() {
               </div>
             </div>
 
-            {/* Section droite : Formulaire */}
             <div className="parametres-right-section">
               {activeTab === 'informations' && (
                 <>
-                  {/* Section Équipe */}
                   <div className="parametres-form-group">
                     <h3 className="parametres-form-group-title">Équipe :</h3>
                     
@@ -188,7 +156,6 @@ function ParametresPage() {
                 </>
               )}
 
-              {/* Bouton d'enregistrement */}
               <div className="parametres-form-actions">
                 <button 
                   type="button"

@@ -4,11 +4,6 @@ import { matchesService, playersService, attendancesService } from '../../servic
 import MatchInfo from '../../components/match/MatchInfo';
 import './MatchDetailPage.css';
 
-/**
- * Page de détail d'un match
- * Affiche toutes les informations d'un match, les joueurs inscrits, la composition des équipes
- * Permet de rejoindre/quitter un match
- */
 function MatchDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -22,27 +17,17 @@ function MatchDetailPage() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
-  /**
-   * Fonction utilitaire pour charger/recharger toutes les données du match
-   * Centralise la logique de chargement pour éviter les incohérences
-   */
   const loadMatchData = async () => {
     try {
       setLoading(true);
       setError(null);
 
-      // Charge le match
       const matchData = await matchesService.getById(id);
-      
-      // Charge tous les joueurs
       const allPlayers = await playersService.getAll();
       setPlayers(allPlayers);
 
-      // Charge les présences pour ce match (comme dans la page présences)
       const attendances = await attendancesService.getByMatchId(id);
       
-      // Calcule le nombre de joueurs présents UNIQUEMENT (ignore pending et absent)
-      // Filtre d'abord par matchId puis par statut "present" uniquement
       const presentCount = attendances
         .filter(att => String(att.matchId) === String(id))
         .filter(att => att.status === 'present')
@@ -50,7 +35,6 @@ function MatchDetailPage() {
       
       const maxPlayers = matchData.maxPlayers || 10;
       
-      // Recalcule le statut dynamiquement basé sur les présences réelles
       const matchDate = new Date(`${matchData.date}T${matchData.time || '00:00'}`);
       const now = new Date();
       let status;
@@ -63,9 +47,6 @@ function MatchDetailPage() {
         status = 'upcoming';
       }
       
-      // Enrichit avec des données calculées
-      // CRITIQUE: On ignore complètement matchData.playersCount et on force le recalcul
-      // On crée un nouvel objet sans le playersCount du matchData pour éviter toute confusion
       const enrichedMatch = {
         id: matchData.id,
         date: matchData.date,
@@ -73,8 +54,8 @@ function MatchDetailPage() {
         location: matchData.location,
         type: matchData.type || '5v5',
         maxPlayers,
-        playersCount: presentCount, // TOUJOURS recalculé depuis les présences réelles
-        status, // Statut recalculé dynamiquement
+        playersCount: presentCount,
+        status,
         createdBy: matchData.createdBy,
         teamId: matchData.teamId,
         createdAt: matchData.createdAt,
@@ -83,7 +64,6 @@ function MatchDetailPage() {
       
       setMatch(enrichedMatch);
       
-      // Enrichit TOUS les joueurs avec leurs statuts de présence (comme page présences)
       const enrichedPlayers = allPlayers.map(player => {
         const attendance = attendances.find(att => att.playerId == player.id);
         return {
@@ -101,23 +81,15 @@ function MatchDetailPage() {
     }
   };
 
-  /**
-   * Charge les données du match au montage du composant
-   */
   useEffect(() => {
     if (id) {
       loadMatchData();
     }
   }, [id]);
 
-  /**
-   * Recharge les données quand on revient sur la page (depuis présences par exemple)
-   * Écoute les changements de focus de la fenêtre
-   */
   useEffect(() => {
     const handleFocus = () => {
       if (id && !loading) {
-        // Utilise la fonction centralisée pour recharger toutes les données
         loadMatchData();
       }
     };
@@ -127,38 +99,26 @@ function MatchDetailPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, loading]);
 
-  /**
-   * Vérifie si l'utilisateur actuel participe au match
-   * @returns {boolean} - True si l'utilisateur participe
-   */
   const isUserParticipating = () => {
-    // TODO: Récupérer l'ID de l'utilisateur depuis l'authentification
     const currentUserId = 1;
     return matchPlayers.some(player => player.id == currentUserId);
   };
 
-
-  /**
-   * Gère l'action de rejoindre/quitter le match
-   */
   const handleJoinLeave = async () => {
     if (!match) return;
 
     try {
       setIsJoining(true);
-      const currentUserId = 1; // TODO: Récupérer depuis l'authentification
+      const currentUserId = 1;
 
       if (isUserParticipating()) {
-        // Quitter le match (retirer la présence)
         const attendances = await attendancesService.getByMatchId(id);
         const userAttendance = attendances.find(att => att.playerId == currentUserId);
         
         if (userAttendance) {
-          // Supprime la présence
           await attendancesService.delete(userAttendance.id);
         }
       } else {
-        // Rejoindre le match (ajouter la présence)
         await attendancesService.upsert({
           matchId: id,
           playerId: currentUserId,
@@ -166,7 +126,6 @@ function MatchDetailPage() {
         });
       }
       
-      // Recharge toutes les données avec la fonction centralisée pour garantir la cohérence
       await loadMatchData();
     } catch (err) {
       console.error('Erreur lors de la participation au match:', err);
@@ -176,9 +135,6 @@ function MatchDetailPage() {
     }
   };
 
-  /**
-   * Formate la date au format français
-   */
   const formatDate = (dateString) => {
     if (!dateString) return '';
     const date = new Date(dateString);
@@ -186,9 +142,6 @@ function MatchDetailPage() {
     return date.toLocaleDateString('fr-FR', options);
   };
 
-  /**
-   * Gère la suppression du match
-   */
   const handleDelete = async () => {
     if (!match) return;
 
@@ -196,10 +149,7 @@ function MatchDetailPage() {
       setIsDeleting(true);
       setError(null);
 
-      // Supprime le match via l'API
       await matchesService.delete(id);
-      
-      // Redirige vers la liste des matchs
       navigate('/match');
     } catch (err) {
       console.error('Erreur lors de la suppression du match:', err);
@@ -239,7 +189,6 @@ function MatchDetailPage() {
   return (
     <div className="match-detail-container">
       <div className="match-detail-content">
-        {/* Header avec bouton retour */}
         <div className="match-detail-header">
           <button
             className="match-detail-back-button"
@@ -250,10 +199,8 @@ function MatchDetailPage() {
           <h1 className="match-detail-title">Détail du match</h1>
         </div>
 
-        {/* Informations principales */}
         <MatchInfo match={match} />
 
-        {/* Actions */}
         <div className="match-detail-actions">
           <div className="match-detail-actions-main">
             {!isPast && !isFull && (
@@ -281,7 +228,6 @@ function MatchDetailPage() {
             )}
           </div>
 
-          {/* Bouton de suppression */}
           <button
             className="match-detail-delete-button"
             onClick={() => setShowDeleteConfirm(true)}
@@ -290,7 +236,6 @@ function MatchDetailPage() {
             🗑️ Supprimer le match
           </button>
 
-          {/* Bouton pour gérer les présences */}
           <Link 
             to={`/presences`} 
             className="match-players-link-presences"
@@ -299,7 +244,6 @@ function MatchDetailPage() {
           </Link>
         </div>
 
-        {/* Confirmation de suppression */}
         {showDeleteConfirm && (
           <div 
             className="match-detail-delete-confirm"

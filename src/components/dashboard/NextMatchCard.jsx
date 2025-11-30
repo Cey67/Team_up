@@ -1,12 +1,7 @@
 import './Card.css';
 
-/**
- * Card affichant le prochain match à venir
- * Affiche les informations du prochain match programmé
- */
 function NextMatchCard() {
-  // Données mockées - à remplacer par des données réelles plus tard
-  const nextMatch = null; // null si aucun match à venir
+  const nextMatch = null;
 
   return (
     <div className="card match-card next-match-card">

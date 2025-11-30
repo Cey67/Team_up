@@ -2,38 +2,22 @@ import { useState, useRef } from 'react';
 import './AvatarUpload.css';
 import defaultAvatar from '../../assets/user.png';
 
-/**
- * Composant pour l'upload et l'affichage de l'avatar utilisateur
- * Design adapté pour la page profil : icône "+" bleu au centre
- * 
- * @param {string} currentPhoto - URL de la photo actuelle (peut être null)
- * @param {Function} onPhotoUpdate - Callback appelé après sélection d'une nouvelle photo
- * @param {string} firstName - Prénom de l'utilisateur (pour l'avatar par défaut)
- * @param {string} lastName - Nom de l'utilisateur (pour l'avatar par défaut)
- */
 function AvatarUpload({ currentPhoto, onPhotoUpdate, firstName, lastName }) {
   const [preview, setPreview] = useState(currentPhoto);
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef(null);
 
-  /**
-   * Gère la sélection d'un fichier image
-   * Valide le type et la taille du fichier avant de créer une prévisualisation
-   * @param {Event} event - Événement de changement de fichier
-   */
   const handleFileChange = async (event) => {
     const file = event.target.files?.[0];
     
     if (!file) return;
 
-    // Validation du type de fichier
     if (!file.type.startsWith('image/')) {
       alert('Veuillez sélectionner un fichier image (JPG, PNG, etc.)');
       return;
     }
 
-    // Validation de la taille (max 5MB)
-    const maxSize = 5 * 1024 * 1024; // 5MB en bytes
+    const maxSize = 5 * 1024 * 1024;
     if (file.size > maxSize) {
       alert('L\'image est trop volumineuse. Taille maximale : 5MB');
       return;
@@ -42,7 +26,6 @@ function AvatarUpload({ currentPhoto, onPhotoUpdate, firstName, lastName }) {
     setIsUploading(true);
 
     try {
-      // Création d'une URL de prévisualisation locale
       const reader = new FileReader();
       
       reader.onloadend = () => {
@@ -50,8 +33,6 @@ function AvatarUpload({ currentPhoto, onPhotoUpdate, firstName, lastName }) {
         setPreview(photoUrl);
         setIsUploading(false);
         
-        // Appel du callback pour notifier le parent
-        // Dans une vraie application, on enverrait le fichier au serveur ici
         if (onPhotoUpdate) {
           onPhotoUpdate(photoUrl);
         }
@@ -70,26 +51,18 @@ function AvatarUpload({ currentPhoto, onPhotoUpdate, firstName, lastName }) {
     }
   };
 
-  /**
-   * Ouvre le sélecteur de fichier
-   */
   const handleAvatarClick = () => {
     if (!isUploading) {
       fileInputRef.current?.click();
     }
   };
 
-  /**
-   * Génère les initiales pour l'avatar par défaut
-   * @returns {string} - Initiales (ex: "CS" pour "Ceyhun SAPMAZ")
-   */
   const getInitials = () => {
     const firstInitial = firstName?.charAt(0)?.toUpperCase() || '';
     const lastInitial = lastName?.charAt(0)?.toUpperCase() || '';
     return `${firstInitial}${lastInitial}`;
   };
 
-  // Détermine l'image à afficher
   const displayImage = preview || currentPhoto || defaultAvatar;
   const showInitials = !preview && !currentPhoto;
 
@@ -120,7 +93,6 @@ function AvatarUpload({ currentPhoto, onPhotoUpdate, firstName, lastName }) {
           />
         )}
         
-        {/* Icône "+" bleu en bas à droite pour indiquer l'upload */}
         <div className="avatar-upload-icon">
           <svg 
             width="24" 
@@ -136,7 +108,6 @@ function AvatarUpload({ currentPhoto, onPhotoUpdate, firstName, lastName }) {
           </svg>
         </div>
 
-        {/* Indicateur de chargement */}
         {isUploading && (
           <div className="avatar-loading">
             <div className="avatar-loading-spinner"></div>
@@ -144,7 +115,6 @@ function AvatarUpload({ currentPhoto, onPhotoUpdate, firstName, lastName }) {
         )}
       </div>
 
-      {/* Input file caché */}
       <input
         ref={fileInputRef}
         type="file"

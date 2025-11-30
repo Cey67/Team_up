@@ -2,27 +2,12 @@ import { useState, useEffect } from 'react';
 import './NewConversationModal.css';
 import { playersService, conversationsService } from '../../services/api';
 
-/**
- * Génère les initiales à partir du prénom et du nom
- * @param {string} firstName - Prénom
- * @param {string} lastName - Nom
- * @returns {string} Initiales (ex: "CS" pour "Ceyhun SAPMAZ")
- */
 const getInitials = (firstName, lastName) => {
   const firstInitial = firstName ? firstName.charAt(0).toUpperCase() : '';
   const lastInitial = lastName ? lastName.charAt(0).toUpperCase() : '';
   return firstInitial + lastInitial;
 };
 
-/**
- * Composant modal pour créer une nouvelle conversation
- * Permet de sélectionner un destinataire parmi les joueurs disponibles
- * 
- * @param {boolean} isOpen - État d'ouverture du modal
- * @param {function} onClose - Callback appelé pour fermer le modal
- * @param {function} onConversationCreated - Callback appelé avec la conversation créée
- * @param {string} currentUserId - ID de l'utilisateur actuel (pour exclure de la liste)
- */
 function NewConversationModal({ isOpen, onClose, onConversationCreated, currentUserId = "1" }) {
   const [players, setPlayers] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -30,10 +15,6 @@ function NewConversationModal({ isOpen, onClose, onConversationCreated, currentU
   const [error, setError] = useState(null);
   const [selectedPlayer, setSelectedPlayer] = useState(null);
 
-  /**
-   * Charge la liste des joueurs au montage du composant
-   * Exclut l'utilisateur actuel de la liste
-   */
   useEffect(() => {
     if (!isOpen) return;
 
@@ -42,7 +23,6 @@ function NewConversationModal({ isOpen, onClose, onConversationCreated, currentU
         setLoading(true);
         setError(null);
         const allPlayers = await playersService.getAll();
-        // Exclure l'utilisateur actuel de la liste
         const availablePlayers = allPlayers.filter(player => player.id !== currentUserId);
         setPlayers(availablePlayers);
       } catch (err) {
@@ -56,9 +36,6 @@ function NewConversationModal({ isOpen, onClose, onConversationCreated, currentU
     loadPlayers();
   }, [isOpen, currentUserId]);
 
-  /**
-   * Réinitialise l'état du modal quand il se ferme
-   */
   useEffect(() => {
     if (!isOpen) {
       setSearchQuery('');
@@ -67,9 +44,6 @@ function NewConversationModal({ isOpen, onClose, onConversationCreated, currentU
     }
   }, [isOpen]);
 
-  /**
-   * Filtre les joueurs en fonction de la recherche
-   */
   const filteredPlayers = players.filter((player) => {
     if (!searchQuery.trim()) {
       return true;
@@ -82,15 +56,9 @@ function NewConversationModal({ isOpen, onClose, onConversationCreated, currentU
            email.includes(searchQuery.toLowerCase());
   });
 
-  /**
-   * Vérifie si une conversation existe déjà avec ce destinataire
-   * @param {string} recipientId - ID du destinataire
-   * @returns {Promise<Object|null>} - La conversation existante ou null
-   */
   const findExistingConversation = async (recipientId) => {
     try {
       const allConversations = await conversationsService.getAll();
-      // Cherche une conversation avec ce userId (destinataire)
       return allConversations.find(conv => conv.userId === recipientId) || null;
     } catch (err) {
       console.error('Erreur lors de la recherche de conversation:', err);
@@ -98,20 +66,14 @@ function NewConversationModal({ isOpen, onClose, onConversationCreated, currentU
     }
   };
 
-  /**
-   * Crée une nouvelle conversation avec le joueur sélectionné
-   * @param {Object} player - Le joueur sélectionné comme destinataire
-   */
   const handleCreateConversation = async (player) => {
     try {
       setLoading(true);
       setError(null);
 
-      // Vérifier si une conversation existe déjà
       const existingConversation = await findExistingConversation(player.id);
       
       if (existingConversation) {
-        // Si une conversation existe déjà, on l'utilise
         if (onConversationCreated) {
           onConversationCreated(existingConversation);
         }
@@ -119,7 +81,6 @@ function NewConversationModal({ isOpen, onClose, onConversationCreated, currentU
         return;
       }
 
-      // Créer une nouvelle conversation
       const newConversation = {
         userId: player.id,
         firstName: player.firstName,
@@ -147,9 +108,6 @@ function NewConversationModal({ isOpen, onClose, onConversationCreated, currentU
     }
   };
 
-  /**
-   * Gère la sélection d'un joueur
-   */
   const handleSelectPlayer = (player) => {
     setSelectedPlayer(player);
     handleCreateConversation(player);
@@ -186,7 +144,6 @@ function NewConversationModal({ isOpen, onClose, onConversationCreated, currentU
         </div>
 
         <div className="new-conversation-modal-body">
-          {/* Barre de recherche */}
           <div className="new-conversation-search">
             <svg 
               className="new-conversation-search-icon" 
@@ -224,14 +181,12 @@ function NewConversationModal({ isOpen, onClose, onConversationCreated, currentU
             />
           </div>
 
-          {/* Message d'erreur */}
           {error && (
             <div className="new-conversation-error">
               {error}
             </div>
           )}
 
-          {/* Liste des joueurs */}
           <div className="new-conversation-players-list">
             {loading && players.length === 0 ? (
               <div className="new-conversation-loading">

@@ -1,19 +1,6 @@
 import './MatchCard.css';
 
-/**
- * Composant MatchCard - Affiche les informations d'un match
- * Utilisé dans la page présences pour afficher les détails d'un match
- * 
- * @param {Object} match - Données du match (date, time, location, opponent)
- * @param {Function} onToggleExpand - Fonction appelée lors du clic pour développer/réduire
- * @param {boolean} isExpanded - Indique si la carte est développée
- */
 function MatchCard({ match, onToggleExpand, isExpanded }) {
-  /**
-   * Formate la date au format français
-   * @param {string} dateString - Date au format ISO (YYYY-MM-DD)
-   * @returns {string} - Date formatée (ex: "15 décembre 2024")
-   */
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const options = { day: 'numeric', month: 'long', year: 'numeric' };

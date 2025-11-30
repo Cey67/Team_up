@@ -1,21 +1,9 @@
 import { useState } from 'react';
 import './EffectifSearchBar.css';
 
-/**
- * Composant de barre de recherche avec filtres et tri
- * Permet de rechercher, filtrer et trier les joueurs de l'effectif
- * 
- * @param {function} onSearch - Callback appelé lors de la recherche (reçoit la valeur de recherche)
- * @param {function} onFilter - Callback appelé lors du clic sur le bouton Filtrer
- * @param {function} onSort - Callback appelé lors du clic sur le bouton Trier
- */
 function EffectifSearchBar({ onSearch, onFilter, onSort }) {
   const [searchValue, setSearchValue] = useState('');
 
-  /**
-   * Gère le changement de valeur dans le champ de recherche
-   * Appelle le callback onSearch avec la nouvelle valeur
-   */
   const handleSearchChange = (e) => {
     const value = e.target.value;
     setSearchValue(value);
@@ -24,18 +12,12 @@ function EffectifSearchBar({ onSearch, onFilter, onSort }) {
     }
   };
 
-  /**
-   * Gère le clic sur le bouton Filtrer
-   */
   const handleFilterClick = () => {
     if (onFilter) {
       onFilter();
     }
   };
 
-  /**
-   * Gère le clic sur le bouton Trier
-   */
   const handleSortClick = () => {
     if (onSort) {
       onSort();

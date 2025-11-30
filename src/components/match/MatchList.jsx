@@ -1,12 +1,6 @@
 import MatchCard from './MatchCard';
 import './MatchList.css';
 
-/**
- * Composant MatchList - Affiche une liste de MatchCard
- * Composant ultra simple, sans logique métier, juste un map sur les matchs
- * 
- * @param {Array} matches - Liste des matchs à afficher
- */
 function MatchList({ matches = [] }) {
   if (matches.length === 0) {
     return (

@@ -2,18 +2,11 @@ import AuthCardLogin from '../../components/auth/AuthCardLogin';
 import AuthPlayerImage from '../../components/auth/AuthPlayerImage';
 import './Auth.css';
 
-/**
- * Page de connexion de l'application Team Up
- * Affiche un formulaire de connexion avec une image de joueur en arrière-plan
- */
 function LoginPage() {
   return (
     <div className="auth-container">
       <div className="auth-wrapper">
-        {/* Panneau gauche avec l'image du joueur */}
         <AuthPlayerImage />
-
-        {/* Panneau droit avec le formulaire de connexion */}
         <AuthCardLogin />
       </div>
     </div>

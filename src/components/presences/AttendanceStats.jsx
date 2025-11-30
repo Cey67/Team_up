@@ -1,19 +1,6 @@
 import './AttendanceStats.css';
 
-/**
- * Composant AttendanceStats - Affiche les statistiques des présences pour un match
- * Montre le nombre de présents, absents et en attente
- * 
- * @param {number} presentCount - Nombre de joueurs présents
- * @param {number} absentCount - Nombre de joueurs absents
- * @param {number} pendingCount - Nombre de joueurs en attente
- * @param {number} totalCount - Nombre total de joueurs
- */
 function AttendanceStats({ presentCount, absentCount, pendingCount, totalCount }) {
-  /**
-   * Calcule le pourcentage de présents
-   * @returns {number} - Pourcentage arrondi
-   */
   const getPresentPercentage = () => {
     if (totalCount === 0) return 0;
     return Math.round((presentCount / totalCount) * 100);

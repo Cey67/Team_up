@@ -2,13 +2,7 @@ import { useState } from 'react';
 import './ProfilPage.css';
 import AvatarUpload from '../../components/profil/AvatarUpload';
 
-/**
- * Page de profil utilisateur
- * Design avec section gauche (avatar + navigation) et section droite (formulaire éditable)
- * Correspond au design de la maquette fournie
- */
 function ProfilPage() {
-  // Données mockées - à remplacer par des données réelles depuis l'API plus tard
   const [userData, setUserData] = useState({
     id: '1',
     firstName: 'Ceyhun',
@@ -26,10 +20,6 @@ function ProfilPage() {
 
   const [activeTab, setActiveTab] = useState('identite');
 
-  /**
-   * Gère la mise à jour de la photo de profil après upload
-   * @param {string} photoUrl - URL de la photo uploadée
-   */
   const handlePhotoUpdate = (photoUrl) => {
     setUserData(prev => ({
       ...prev,
@@ -37,11 +27,6 @@ function ProfilPage() {
     }));
   };
 
-  /**
-   * Gère la mise à jour des champs du formulaire
-   * @param {string} field - Nom du champ à mettre à jour
-   * @param {string} value - Nouvelle valeur
-   */
   const handleFieldChange = (field, value) => {
     setUserData(prev => ({
       ...prev,
@@ -49,31 +34,19 @@ function ProfilPage() {
     }));
   };
 
-  /**
-   * Gère l'action "Quitter l'équipe"
-   */
   const handleLeaveTeam = () => {
     if (window.confirm('Êtes-vous sûr de vouloir quitter l\'équipe ?')) {
-      // TODO: Implémenter la logique de quitter l'équipe
       console.log('Quitter l\'équipe');
     }
   };
 
-  /**
-   * Gère l'enregistrement des données du profil
-   * Valide les champs requis avant de sauvegarder
-   */
   const handleSave = () => {
-    // Validation des champs requis
     if (!userData.firstName.trim() || !userData.lastName.trim()) {
       alert('Veuillez remplir tous les champs obligatoires (Nom et Prénom)');
       return;
     }
 
-    // TODO: Envoyer les données au serveur via l'API
     console.log('Données à enregistrer:', userData);
-    
-    // Simulation d'un enregistrement réussi
     alert('Profil enregistré avec succès !');
   };
 
@@ -82,10 +55,8 @@ function ProfilPage() {
       <div className="profil-content">
         <h1 className="profil-title">Profil</h1>
 
-        {/* Card principale avec deux sections */}
         <div className="profil-card">
           <div className="profil-card-layout">
-            {/* Section gauche : Avatar + Navigation */}
             <div className="profil-left-section">
               <div className="profil-avatar-wrapper">
                 <AvatarUpload 
@@ -99,7 +70,6 @@ function ProfilPage() {
                 </h2>
               </div>
 
-              {/* Boutons de navigation */}
               <div className="profil-nav-buttons">
                 <button 
                   className={`profil-nav-btn ${activeTab === 'identite' ? 'profil-nav-btn-active' : ''}`}
@@ -116,9 +86,7 @@ function ProfilPage() {
               </div>
             </div>
 
-            {/* Section droite : Formulaire */}
             <div className="profil-right-section">
-              {/* Formulaire d'identité */}
               <div className="profil-form-section">
                 <label className="profil-form-label" htmlFor="firstName">
                   Nom : <span className="profil-required">*</span>
@@ -188,7 +156,6 @@ function ProfilPage() {
                 />
               </div>
 
-              {/* Bouton d'enregistrement */}
               <div className="profil-form-actions">
                 <button 
                   type="button"

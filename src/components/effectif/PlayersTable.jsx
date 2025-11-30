@@ -1,11 +1,6 @@
 import { useState } from 'react';
 import './PlayersTable.css';
 
-/**
- * Formatage de la date de naissance pour l'affichage
- * @param {string} dateString - Date au format ISO ou autre
- * @returns {string} Date formatée en français
- */
 const formatDate = (dateString) => {
   if (!dateString) return '';
   const date = new Date(dateString);
@@ -16,33 +11,16 @@ const formatDate = (dateString) => {
   return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
 };
 
-/**
- * Génère les initiales à partir du nom et prénom
- * @param {string} firstName - Prénom
- * @param {string} lastName - Nom
- * @returns {string} Initiales (ex: "CS" pour "Ceyhun Sapmaz")
- */
 const getInitials = (firstName, lastName) => {
   const first = firstName ? firstName.charAt(0).toUpperCase() : '';
   const last = lastName ? lastName.charAt(0).toUpperCase() : '';
   return first + last;
 };
 
-/**
- * Composant de tableau pour afficher la liste des joueurs
- * Affiche toutes les informations des joueurs avec possibilité de sélection
- * 
- * @param {Array} players - Tableau des joueurs à afficher
- * @param {function} onPlayerSelect - Callback appelé lors de la sélection d'un joueur
- */
 function PlayersTable({ players = [], onPlayerSelect }) {
   const [selectedPlayers, setSelectedPlayers] = useState(new Set());
   const [selectAll, setSelectAll] = useState(false);
 
-  /**
-   * Données mockées par défaut si aucun joueur n'est fourni
-   * À remplacer par des données réelles depuis l'API plus tard
-   */
   const defaultPlayers = [
     {
       id: 1,
@@ -70,12 +48,8 @@ function PlayersTable({ players = [], onPlayerSelect }) {
     }
   ];
 
-  // Utilise les joueurs fournis en props, ou les données mockées si aucun joueur n'est fourni
   const displayPlayers = players.length > 0 ? players : defaultPlayers;
 
-  /**
-   * Gère la sélection/désélection d'un joueur individuel
-   */
   const handlePlayerSelect = (playerId) => {
     const newSelected = new Set(selectedPlayers);
     if (newSelected.has(playerId)) {
@@ -91,9 +65,6 @@ function PlayersTable({ players = [], onPlayerSelect }) {
     }
   };
 
-  /**
-   * Gère la sélection/désélection de tous les joueurs
-   */
   const handleSelectAll = () => {
     if (selectAll) {
       setSelectedPlayers(new Set());

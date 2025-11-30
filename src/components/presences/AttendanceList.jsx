@@ -1,43 +1,17 @@
 import './AttendanceList.css';
 
-/**
- * Composant AttendanceList - Affiche la liste des joueurs avec leur statut de présence
- * Permet de modifier le statut de présence pour chaque joueur
- * 
- * @param {Array} players - Liste des joueurs
- * @param {Array} attendances - Liste des présences pour ce match
- * @param {Function} onStatusChange - Fonction appelée lors du changement de statut (matchId, playerId, newStatus)
- * @param {number} matchId - ID du match
- * @param {boolean} canEdit - Indique si l'utilisateur peut modifier les présences
- * @param {Object|null} updatingAttendance - Objet { matchId, playerId } indiquant quelle présence est en cours de mise à jour
- */
 function AttendanceList({ players, attendances, onStatusChange, matchId, canEdit = true, updatingAttendance = null }) {
-  /**
-   * Obtient le statut de présence d'un joueur pour ce match
-   * @param {number} playerId - ID du joueur
-   * @returns {string} - Statut de présence ('present', 'absent', 'pending')
-   */
   const getPlayerStatus = (playerId) => {
     const attendance = attendances.find(att => att.playerId === playerId);
     return attendance ? attendance.status : 'pending';
   };
 
-  /**
-   * Gère le changement de statut de présence
-   * @param {number} playerId - ID du joueur
-   * @param {string} newStatus - Nouveau statut ('present', 'absent', 'pending')
-   */
   const handleStatusChange = (playerId, newStatus) => {
     if (canEdit && onStatusChange) {
       onStatusChange(matchId, playerId, newStatus);
     }
   };
 
-  /**
-   * Obtient les classes CSS pour le statut
-   * @param {string} status - Statut de présence
-   * @returns {string} - Classes CSS
-   */
   const getStatusClasses = (status) => {
     const baseClass = 'attendance-status';
     switch (status) {
@@ -51,11 +25,6 @@ function AttendanceList({ players, attendances, onStatusChange, matchId, canEdit
     }
   };
 
-  /**
-   * Obtient le label du statut
-   * @param {string} status - Statut de présence
-   * @returns {string} - Label en français
-   */
   const getStatusLabel = (status) => {
     switch (status) {
       case 'present':
@@ -68,11 +37,6 @@ function AttendanceList({ players, attendances, onStatusChange, matchId, canEdit
     }
   };
 
-  /**
-   * Obtient l'icône du statut
-   * @param {string} status - Statut de présence
-   * @returns {string} - Icône
-   */
   const getStatusIcon = (status) => {
     switch (status) {
       case 'present':

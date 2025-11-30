@@ -7,7 +7,6 @@ import passwordIcon from '../../assets/mdp.png';
 function AuthCardRegister() {
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Logique frontend uniquement - pas de validation ni d'appel API
   };
 
   return (
@@ -16,7 +15,6 @@ function AuthCardRegister() {
         <h1 className="auth-title">S'inscrire</h1>
         
         <form onSubmit={handleSubmit} className="auth-form" noValidate>
-          {/* Champ Nom d'utilisateur */}
           <div className="auth-input-group">
             <label htmlFor="username" className="auth-label">
               Nom d'utilisateur
@@ -34,7 +32,6 @@ function AuthCardRegister() {
             </div>
           </div>
 
-          {/* Champ Email */}
           <div className="auth-input-group">
             <label htmlFor="email" className="auth-label">
               E-mail
@@ -52,7 +49,6 @@ function AuthCardRegister() {
             </div>
           </div>
 
-          {/* Champ Mot de passe */}
           <div className="auth-input-group">
             <label htmlFor="password" className="auth-label">
               Mot de passe
@@ -70,13 +66,11 @@ function AuthCardRegister() {
             </div>
           </div>
 
-          {/* Bouton de soumission */}
           <button type="submit" className="auth-submit-button">
             S'inscrire
           </button>
         </form>
 
-        {/* Lien de navigation */}
         <div className="auth-links auth-links-single">
           <Link to="/login" className="auth-link">
             Vous avez déjà un compte ?

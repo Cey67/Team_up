@@ -1,15 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import './SortMenu.css';
 
-/**
- * Composant menu déroulant pour trier les joueurs
- * Permet de choisir le critère de tri et l'ordre (croissant/décroissant)
- * 
- * @param {boolean} isOpen - État d'ouverture du menu
- * @param {function} onClose - Callback appelé pour fermer le menu
- * @param {object} currentSort - Tri actuellement appliqué { field: string, order: 'asc' | 'desc' }
- * @param {function} onApplySort - Callback appelé avec le nouveau tri
- */
 function SortMenu({ isOpen, onClose, currentSort = { field: null, order: 'asc' }, onApplySort }) {
   const [sort, setSort] = useState({
     field: currentSort.field || 'lastName',
@@ -17,7 +8,6 @@ function SortMenu({ isOpen, onClose, currentSort = { field: null, order: 'asc' }
   });
   const menuRef = useRef(null);
 
-  // Met à jour le tri local quand currentSort change
   useEffect(() => {
     setSort({
       field: currentSort.field || 'lastName',
@@ -25,7 +15,6 @@ function SortMenu({ isOpen, onClose, currentSort = { field: null, order: 'asc' }
     });
   }, [currentSort]);
 
-  // Ferme le menu si on clique en dehors
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target) && isOpen) {
@@ -41,9 +30,6 @@ function SortMenu({ isOpen, onClose, currentSort = { field: null, order: 'asc' }
     }
   }, [isOpen, onClose]);
 
-  /**
-   * Options de tri disponibles
-   */
   const sortOptions = [
     { value: 'lastName', label: 'Nom' },
     { value: 'firstName', label: 'Prénom' },
@@ -51,16 +37,10 @@ function SortMenu({ isOpen, onClose, currentSort = { field: null, order: 'asc' }
     { value: 'id', label: 'Numéro' }
   ];
 
-  /**
-   * Gère le changement de critère de tri
-   */
   const handleFieldChange = (field) => {
     setSort(prev => ({ ...prev, field }));
   };
 
-  /**
-   * Gère le changement d'ordre de tri
-   */
   const handleOrderToggle = () => {
     setSort(prev => ({
       ...prev,
@@ -68,9 +48,6 @@ function SortMenu({ isOpen, onClose, currentSort = { field: null, order: 'asc' }
     }));
   };
 
-  /**
-   * Applique le tri
-   */
   const handleApply = () => {
     if (onApplySort) {
       onApplySort(sort);
@@ -80,9 +57,6 @@ function SortMenu({ isOpen, onClose, currentSort = { field: null, order: 'asc' }
     }
   };
 
-  /**
-   * Réinitialise le tri
-   */
   const handleReset = () => {
     const resetSort = { field: 'lastName', order: 'asc' };
     setSort(resetSort);
@@ -121,7 +95,6 @@ function SortMenu({ isOpen, onClose, currentSort = { field: null, order: 'asc' }
         </div>
 
         <div className="sort-menu-body">
-          {/* Sélection du critère de tri */}
           <div className="sort-group">
             <label className="sort-label">Trier par</label>
             <div className="sort-options">
@@ -140,7 +113,6 @@ function SortMenu({ isOpen, onClose, currentSort = { field: null, order: 'asc' }
             </div>
           </div>
 
-          {/* Sélection de l'ordre */}
           <div className="sort-group">
             <label className="sort-label">Ordre</label>
             <div className="sort-order-controls">

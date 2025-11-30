@@ -1,17 +1,5 @@
 import './PlayerStatsCard.css';
 
-/**
- * Card affichant les statistiques d'un joueur
- * Affiche le nom, la photo, le poste, le nombre de matchs joués, buts marqués et passes décisives
- * 
- * @param {Object} player - Les données du joueur
- * @param {string} player.name - Le nom du joueur
- * @param {string} player.photo - L'URL de la photo du joueur
- * @param {string} player.position - Le poste du joueur
- * @param {number} player.matchesPlayed - Le nombre de matchs joués
- * @param {number} player.goals - Le nombre de buts marqués
- * @param {number} player.assists - Le nombre de passes décisives
- */
 function PlayerStatsCard({ player }) {
   const { name, photo, position, matchesPlayed = 0, goals = 0, assists = 0 } = player;
 
