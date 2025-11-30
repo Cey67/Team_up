@@ -26,8 +26,8 @@ Description détaillée de toutes les entités et attributs :
 - Matches (Matchs)
 - Attendances (Présences)
 - Statistics (Statistiques)
-- Conversations
-- Messages
+- Conversations ⚠️ _(en stand-by)_
+- Messages ⚠️ _(en stand-by)_
 - Enums et valeurs possibles
 - Relations entre entités
 
